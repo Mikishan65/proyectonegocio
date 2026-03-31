@@ -126,6 +126,8 @@ body::before {
   position: sticky;
   top: 1rem;
   z-index: 50;
+  --header-y: 0px;
+  --header-scale: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -137,16 +139,25 @@ body::before {
   background: color-mix(in srgb, var(--surface-strong) 82%, transparent);
   backdrop-filter: blur(20px);
   box-shadow: var(--shadow);
+  opacity: 1;
+  transform: translateY(var(--header-y)) scale(var(--header-scale));
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
     background-color 0.25s ease,
-    border-color 0.25s ease;
+    border-color 0.25s ease,
+    opacity 0.22s ease;
 }
 
 .topbar.is-scrolled {
-  transform: translateY(-0.15rem) scale(0.992);
+  --header-scale: 0.992;
   box-shadow: var(--shadow-strong);
+}
+
+.topbar.is-hidden {
+  --header-y: calc(-100% - 1.4rem);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .brand {
@@ -649,6 +660,8 @@ h3 {
   perspective: 1800px;
   --tilt-x: -12deg;
   --tilt-y: 18deg;
+  touch-action: pan-y;
+  will-change: transform;
 }
 
 .scene-stage,

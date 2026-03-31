@@ -19,6 +19,7 @@ const hasFinePointer = window.matchMedia("(pointer: fine)");
 const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 const themeStorageKey = "impulsapyme-theme";
 let storedTheme = null;
+let lastScrollY = window.scrollY;
 
 try {
   storedTheme = window.localStorage.getItem(themeStorageKey);
@@ -78,12 +79,20 @@ if (navToggle && siteNav) {
   navToggle.addEventListener("click", () => {
     const isOpen = siteNav.classList.toggle("is-open");
     navToggle.setAttribute("aria-expanded", String(isOpen));
+
+    if (topbar) {
+      topbar.classList.remove("is-hidden");
+    }
   });
 
   navLinks.forEach((link) => {
     link.addEventListener("click", () => {
       siteNav.classList.remove("is-open");
       navToggle.setAttribute("aria-expanded", "false");
+
+      if (topbar) {
+        topbar.classList.remove("is-hidden");
+      }
     });
   });
 }
@@ -163,33 +172,148 @@ const syncHeaderState = () => {
     return;
   }
 
-  topbar.classList.toggle("is-scrolled", window.scrollY > 18);
+  const currentScrollY = window.scrollY;
+  const isMenuOpen = Boolean(siteNav?.classList.contains("is-open"));
+  const scrollingDown = currentScrollY > lastScrollY + 6;
+  const scrollingUp = currentScrollY < lastScrollY - 6;
+
+  topbar.classList.toggle("is-scrolled", currentScrollY > 18);
+
+  if (isMenuOpen || currentScrollY <= 24 || scrollingUp) {
+    topbar.classList.remove("is-hidden");
+  } else if (scrollingDown && currentScrollY > 120) {
+    topbar.classList.add("is-hidden");
+  }
+
+  lastScrollY = currentScrollY;
 };
 
 window.addEventListener("scroll", syncHeaderState, { passive: true });
 syncHeaderState();
 
-const attachTilt = (element, options = {}) => {
+const setSceneTilt = (element, rotateX, rotateY) => {
+  element.style.setProperty("--tilt-x", `${rotateX}deg`);
+  element.style.setProperty("--tilt-y", `${rotateY}deg`);
+};
+
+const getSceneTiltConfig = (element, options = {}) => {
   const baseX = Number(element.dataset.tiltBaseX ?? options.baseX ?? 0);
   const baseY = Number(element.dataset.tiltBaseY ?? options.baseY ?? 0);
   const rangeX = Number(element.dataset.tiltRangeX ?? options.rangeX ?? 10);
   const rangeY = Number(element.dataset.tiltRangeY ?? options.rangeY ?? 12);
 
-  element.addEventListener("mousemove", (event) => {
+  return { baseX, baseY, rangeX, rangeY };
+};
+
+const attachSceneMotion = (element, options = {}) => {
+  const { baseX, baseY, rangeX, rangeY } = getSceneTiltConfig(element, options);
+  let animationFrameId = 0;
+  let isTouchInteracting = false;
+  const scenePhase = Math.random() * Math.PI * 2;
+
+  const updateFromPoint = (clientX, clientY) => {
     const rect = element.getBoundingClientRect();
-    const offsetX = (event.clientX - rect.left) / rect.width - 0.5;
-    const offsetY = (event.clientY - rect.top) / rect.height - 0.5;
+    const offsetX = (clientX - rect.left) / rect.width - 0.5;
+    const offsetY = (clientY - rect.top) / rect.height - 0.5;
     const rotateX = baseX - offsetY * rangeX;
     const rotateY = baseY + offsetX * rangeY;
 
-    element.style.setProperty("--tilt-x", `${rotateX}deg`);
-    element.style.setProperty("--tilt-y", `${rotateY}deg`);
-  });
+    setSceneTilt(element, rotateX, rotateY);
+  };
 
-  element.addEventListener("mouseleave", () => {
-    element.style.setProperty("--tilt-x", `${baseX}deg`);
-    element.style.setProperty("--tilt-y", `${baseY}deg`);
-  });
+  setSceneTilt(element, baseX, baseY);
+
+  if (hasFinePointer.matches) {
+    element.addEventListener("mousemove", (event) => {
+      const rect = element.getBoundingClientRect();
+      const offsetX = (event.clientX - rect.left) / rect.width - 0.5;
+      const offsetY = (event.clientY - rect.top) / rect.height - 0.5;
+      const rotateX = baseX - offsetY * rangeX;
+      const rotateY = baseY + offsetX * rangeY;
+
+      setSceneTilt(element, rotateX, rotateY);
+    });
+
+    element.addEventListener("mouseleave", () => {
+      setSceneTilt(element, baseX, baseY);
+    });
+  }
+
+  if (!prefersReducedMotion.matches && !hasFinePointer.matches) {
+    const autoAnimate = (time) => {
+      if (!isTouchInteracting) {
+        const seconds = time / 1000;
+        const rotateX = baseX + Math.sin(seconds * 0.95 + scenePhase) * (rangeX * 0.35);
+        const rotateY = baseY + Math.cos(seconds * 0.8 + scenePhase) * (rangeY * 0.45);
+
+        setSceneTilt(element, rotateX, rotateY);
+      }
+
+      animationFrameId = window.requestAnimationFrame(autoAnimate);
+    };
+
+    animationFrameId = window.requestAnimationFrame(autoAnimate);
+  }
+
+  element.addEventListener(
+    "touchstart",
+    (event) => {
+      const touch = event.touches[0];
+
+      if (!touch) {
+        return;
+      }
+
+      isTouchInteracting = true;
+      updateFromPoint(touch.clientX, touch.clientY);
+    },
+    { passive: true },
+  );
+
+  element.addEventListener(
+    "touchmove",
+    (event) => {
+      const touch = event.touches[0];
+
+      if (!touch) {
+        return;
+      }
+
+      isTouchInteracting = true;
+      updateFromPoint(touch.clientX, touch.clientY);
+    },
+    { passive: true },
+  );
+
+  element.addEventListener(
+    "touchend",
+    () => {
+      isTouchInteracting = false;
+
+      if (prefersReducedMotion.matches || hasFinePointer.matches) {
+        setSceneTilt(element, baseX, baseY);
+      }
+    },
+    { passive: true },
+  );
+
+  element.addEventListener(
+    "touchcancel",
+    () => {
+      isTouchInteracting = false;
+
+      if (prefersReducedMotion.matches || hasFinePointer.matches) {
+        setSceneTilt(element, baseX, baseY);
+      }
+    },
+    { passive: true },
+  );
+
+  return () => {
+    if (animationFrameId) {
+      window.cancelAnimationFrame(animationFrameId);
+    }
+  };
 };
 
 const attachCardTilt = (element) => {
@@ -213,9 +337,10 @@ const attachCardTilt = (element) => {
 };
 
 if (!prefersReducedMotion.matches && hasFinePointer.matches) {
-  tiltScenes.forEach((scene) => attachTilt(scene, { baseX: -12, baseY: 18, rangeX: 14, rangeY: 18 }));
   interactiveCards.forEach((card) => attachCardTilt(card));
 }
+
+tiltScenes.forEach((scene) => attachSceneMotion(scene, { baseX: -12, baseY: 18, rangeX: 14, rangeY: 18 }));
 
 if (yearTarget) {
   yearTarget.textContent = String(new Date().getFullYear());
