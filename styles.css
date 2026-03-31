@@ -342,8 +342,23 @@ body::before {
 
 .hero-visual,
 .systems-visual {
-  min-height: 34rem;
-  overflow: clip;
+  min-height: 36rem;
+  padding: 1rem 1.75rem 2rem;
+  margin: -1rem -1.75rem -2rem;
+  overflow: visible;
+  isolation: isolate;
+}
+
+.hero-visual::after,
+.systems-visual::after {
+  position: absolute;
+  inset: 1rem 0.75rem 1.5rem;
+  border-radius: 2.5rem;
+  background:
+    radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--surface-strong) 28%, transparent), transparent 68%);
+  content: "";
+  pointer-events: none;
+  z-index: -1;
 }
 
 .eyebrow,
@@ -630,7 +645,7 @@ h3 {
 .scene-shell,
 .systems-scene {
   position: relative;
-  overflow: clip;
+  overflow: visible;
   perspective: 1800px;
   --tilt-x: -12deg;
   --tilt-y: 18deg;
@@ -1408,8 +1423,14 @@ h3 {
   .scene-stage,
   .systems-visual,
   .systems-stage {
-    min-height: 29rem;
-    height: 29rem;
+    min-height: 31rem;
+    height: 31rem;
+  }
+
+  .hero-visual,
+  .systems-visual {
+    padding: 0.85rem 0.8rem 1.25rem;
+    margin: -0.85rem -0.8rem -1.25rem;
   }
 
   .scene-floor,
@@ -1518,6 +1539,12 @@ h3 {
   .scene-shell,
   .systems-scene {
     perspective: 1300px;
+  }
+
+  .hero-visual,
+  .systems-visual {
+    padding: 0.7rem 0.25rem 1rem;
+    margin: -0.7rem -0.25rem -1rem;
   }
 
   .scene-core,
