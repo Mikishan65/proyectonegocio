@@ -1,6 +1,6 @@
-# ProyectoNegocio
+# ImpulsaPyME
 
-Portafolio estático para una agencia que vende sistemas, marketing y diseño gráfico.
+Portafolio estático para una agencia que vende sistemas, gestión estratégica de redes y diseño gráfico, con una propuesta enfocada en clínicas y negocios de servicios.
 
 ## Archivos principales
 
@@ -11,12 +11,12 @@ Portafolio estático para una agencia que vende sistemas, marketing y diseño gr
 
 ## Antes de publicar
 
-Edita en `index.html` estos datos:
+Revisa en `index.html` estos datos si quieres personalizar más:
 
-- `ProyectoNegocio` si quieres otro nombre de agencia
-- `hola@proyectonegocio.com`
-- `+591 70000000`
-- textos de servicios o propuestas si quieres ajustarlos a tu oferta real
+- nombre de marca `ImpulsaPyME`
+- correo `julieth3357t@gmail.com`
+- WhatsApp `755 41 660`
+- textos de beneficios, paquetes y términos
 
 ## Publicar en GitHub Pages
 

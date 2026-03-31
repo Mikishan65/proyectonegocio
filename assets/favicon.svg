@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
-  <title>ProyectoNegocio</title>
+  <title>ImpulsaPyME</title>
   <defs>
     <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#ff6b4a" />
@@ -8,8 +8,16 @@
   </defs>
   <rect width="128" height="128" rx="30" fill="#fff7ee" />
   <rect x="12" y="12" width="104" height="104" rx="24" fill="url(#g)" />
-  <path
-    d="M38 90V38h25.5c11.3 0 18.5 6.4 18.5 16.7 0 10.5-7.4 16.8-18.8 16.8H50.4V90H38Zm12.4-28.3h11.3c4.9 0 7.9-2.5 7.9-7 0-4.6-3-7-7.9-7H50.4v14ZM90 90V38h12.4v41.1h-7.8L81.9 60.7V90H90Z"
+  <text
+    x="64"
+    y="78"
     fill="#ffffff"
-  />
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="44"
+    font-weight="700"
+    letter-spacing="2"
+    text-anchor="middle"
+  >
+    IP
+  </text>
 </svg>
