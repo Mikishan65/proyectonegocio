@@ -280,6 +280,7 @@ body::before {
   border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--surface-strong) 92%, transparent);
   color: var(--ink);
+  cursor: pointer;
   font: inherit;
   padding: 0.65rem 0.95rem;
   transition:
@@ -300,6 +301,7 @@ body::before {
   position: relative;
   width: 2.8rem;
   height: 1.55rem;
+  flex-shrink: 0;
   border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--ink) 10%, transparent);
   box-shadow: inset 0 0 0 1px var(--line);
@@ -325,6 +327,60 @@ body::before {
 
 .theme-toggle__label {
   font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.nav-toggle__icon {
+  position: relative;
+  display: inline-grid;
+  width: 1.1rem;
+  height: 0.95rem;
+  flex-shrink: 0;
+}
+
+.nav-toggle__icon span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transform-origin: center;
+  transition:
+    transform 0.22s ease,
+    top 0.22s ease,
+    opacity 0.22s ease;
+}
+
+.nav-toggle__icon span:nth-child(1) {
+  top: 0;
+}
+
+.nav-toggle__icon span:nth-child(2) {
+  top: calc(50% - 1px);
+}
+
+.nav-toggle__icon span:nth-child(3) {
+  top: calc(100% - 2px);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon span:nth-child(1) {
+  top: calc(50% - 1px);
+  transform: rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon span:nth-child(3) {
+  top: calc(50% - 1px);
+  transform: rotate(-45deg);
+}
+
+.nav-toggle__label {
+  font-size: 0.9rem;
+  font-weight: 500;
   white-space: nowrap;
 }
 
@@ -1365,43 +1421,80 @@ h3 {
   }
 
   .topbar {
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
     padding: 0.95rem 1rem;
-    align-items: flex-start;
+    align-items: start;
+  }
+
+  .brand {
+    grid-column: 1 / -1;
   }
 
   .topbar-actions {
-    width: 100%;
-    order: 3;
-    display: grid;
-    gap: 0.75rem;
-  }
-
-  .nav-toggle {
-    display: inline-flex;
-    order: 2;
+    display: contents;
   }
 
   .site-nav {
     display: none;
+    grid-column: 1 / -1;
+    grid-row: 3;
     width: 100%;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.35rem;
+    margin-top: 0.05rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
   }
 
   .site-nav.is-open {
-    display: flex;
+    display: grid;
   }
 
   .site-nav a {
     width: 100%;
-    justify-content: flex-start;
+    min-height: 3.1rem;
+    justify-content: center;
+    padding: 0.72rem 0.65rem;
+    text-align: center;
+    border-color: var(--line);
+    background: color-mix(in srgb, var(--surface) 88%, transparent);
+  }
+
+  .site-nav a::after {
+    left: 0.7rem;
+    right: 0.7rem;
+    bottom: 0.45rem;
+  }
+
+  .theme-toggle,
+  .nav-toggle {
+    width: 100%;
+    justify-content: center;
+    min-height: 3.1rem;
+    padding: 0.7rem 0.85rem;
   }
 
   .theme-toggle {
-    width: 100%;
-    justify-content: center;
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .theme-toggle__label,
+  .nav-toggle__label {
+    font-size: 0.82rem;
+  }
+
+  .theme-toggle__label {
+    max-width: 4.5rem;
+    white-space: normal;
+    line-height: 1.05;
+    text-align: center;
   }
 
   .section {
@@ -1513,12 +1606,12 @@ h3 {
   }
 
   .topbar {
-    gap: 0.75rem;
+    gap: 0.65rem;
     padding: 0.85rem 0.9rem;
   }
 
   .brand {
-    width: calc(100% - 5.2rem);
+    width: 100%;
   }
 
   .brand-mark {
@@ -1532,13 +1625,37 @@ h3 {
 
   .brand-copy small {
     font-size: 0.72rem;
-    white-space: nowrap;
+    display: -webkit-box;
+    white-space: normal;
     overflow: hidden;
-    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 
+  .theme-toggle,
   .nav-toggle {
-    margin-left: auto;
+    min-height: 3rem;
+    gap: 0.55rem;
+    padding: 0.68rem 0.72rem;
+  }
+
+  .theme-toggle__label,
+  .nav-toggle__label {
+    font-size: 0.78rem;
+  }
+
+  .theme-toggle__label {
+    max-width: 4.1rem;
+  }
+
+  .site-nav {
+    gap: 0.5rem;
+  }
+
+  .site-nav a {
+    min-height: 3rem;
+    padding-inline: 0.55rem;
+    font-size: 0.88rem;
   }
 
   .hero-visual,

@@ -11,6 +11,7 @@ const interactiveCards = document.querySelectorAll(
 );
 const themeToggle = document.querySelector(".theme-toggle");
 const themeToggleLabel = document.querySelector(".theme-toggle__label");
+const navToggleLabel = document.querySelector(".nav-toggle__label");
 const themeColorMeta = document.querySelector("#theme-color-meta");
 const yearTarget = document.querySelector("#current-year");
 const sectionTargets = document.querySelectorAll("main section[id]");
@@ -76,23 +77,28 @@ if (themeToggle) {
 }
 
 if (navToggle && siteNav) {
-  navToggle.addEventListener("click", () => {
-    const isOpen = siteNav.classList.toggle("is-open");
+  const setNavState = (isOpen) => {
+    siteNav.classList.toggle("is-open", isOpen);
     navToggle.setAttribute("aria-expanded", String(isOpen));
+    navToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+
+    if (navToggleLabel) {
+      navToggleLabel.textContent = isOpen ? "Cerrar" : "Menú";
+    }
 
     if (topbar) {
       topbar.classList.remove("is-hidden");
     }
+  };
+
+  navToggle.addEventListener("click", () => {
+    const isOpen = !siteNav.classList.contains("is-open");
+    setNavState(isOpen);
   });
 
   navLinks.forEach((link) => {
     link.addEventListener("click", () => {
-      siteNav.classList.remove("is-open");
-      navToggle.setAttribute("aria-expanded", "false");
-
-      if (topbar) {
-        topbar.classList.remove("is-hidden");
-      }
+      setNavState(false);
     });
   });
 }
