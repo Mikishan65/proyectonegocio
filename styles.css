@@ -185,6 +185,12 @@ body::before {
     box-shadow 0.25s ease;
 }
 
+.brand-mark img {
+  display: block;
+  width: 80%;
+  height: 80%;
+}
+
 .brand:hover .brand-mark,
 .brand:focus-visible .brand-mark {
   transform: rotate(-8deg) scale(1.05);

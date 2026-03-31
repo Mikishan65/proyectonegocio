@@ -1,23 +1,31 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
   <title>ImpulsaPyME</title>
   <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="g" x1="10%" y1="5%" x2="90%" y2="95%">
       <stop offset="0%" stop-color="#ff6b4a" />
       <stop offset="100%" stop-color="#f2b134" />
     </linearGradient>
   </defs>
   <rect width="128" height="128" rx="30" fill="#fff7ee" />
   <rect x="12" y="12" width="104" height="104" rx="24" fill="url(#g)" />
-  <text
-    x="64"
-    y="78"
-    fill="#ffffff"
-    font-family="Arial, Helvetica, sans-serif"
-    font-size="44"
-    font-weight="700"
-    letter-spacing="2"
-    text-anchor="middle"
+  <g
+    transform="translate(12 12) scale(1.083333)"
+    fill="none"
+    stroke="#ffffff"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="6"
   >
-    IP
-  </text>
+    <path d="M20 35h28l4 9H16z" />
+    <path d="M22 35v-9h24v9" />
+    <path d="M18 44v25h34V44" />
+    <path d="M31 69V56h10v13" />
+    <path d="M46 60l10-10 9 7 13-19" />
+    <path d="M70 38h9v9" />
+  </g>
+  <g transform="translate(12 12) scale(1.083333)" fill="#ffffff">
+    <circle cx="46" cy="60" r="3.2" />
+    <circle cx="56" cy="50" r="3.2" />
+    <circle cx="65" cy="57" r="3.2" />
+  </g>
 </svg>

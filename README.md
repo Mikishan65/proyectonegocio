@@ -1,6 +1,6 @@
 # ImpulsaPyME
 
-Portafolio estático para una agencia que vende sistemas, gestión estratégica de redes y diseño gráfico, con una propuesta enfocada en clínicas y negocios de servicios.
+Portafolio estático para una agencia que vende sistemas, gestión estratégica de redes y diseño gráfico, con una propuesta dirigida a empresas de cualquier rubro y soluciones adaptadas a cada necesidad.
 
 ## Archivos principales
 
