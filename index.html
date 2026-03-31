@@ -1,41 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="ImpulsaPyME desarrolla sistemas, estrategia digital y diseño para empresas de cualquier rubro que buscan modernizarse, crecer y ordenar su operación."
+      content="ImpulsaPyME desarrolla sistemas, marketing digital y diseño gráfico para empresas de cualquier rubro que buscan crecer con soluciones adaptadas."
     />
     <meta name="theme-color" content="#f4eadc" id="theme-color-meta" />
-    <title>ImpulsaPyME | Sistemas, redes y diseño</title>
+    <title>ImpulsaPyME | Soluciones digitales para PyMEs</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
   </head>
-  <body>
+  <body data-page="home">
     <div class="background-glow background-glow--left"></div>
     <div class="background-glow background-glow--right"></div>
 
     <div class="site-shell">
       <header class="topbar">
-        <a class="brand" href="#inicio" aria-label="Ir al inicio">
+        <a class="brand" href="index.html" aria-label="Ir al inicio">
           <span class="brand-mark" aria-hidden="true">
             <img src="assets/brand-mark.svg" alt="" />
           </span>
           <span class="brand-copy">
             <strong>Impulsa Pequeñas y Medianas Empresas</strong>
-            <small>Soluciones digitales adaptadas para empresas de cualquier rubro</small>
+            <small
+              >Soluciones digitales adaptadas para empresas de cualquier
+              rubro</small
+            >
           </span>
         </a>
 
         <div class="topbar-actions">
           <nav class="site-nav" id="site-nav" aria-label="Principal">
-            <a href="#servicios">Servicios</a>
-            <a href="#software">Software</a>
-            <a href="#beneficios">Beneficios</a>
-            <a href="#proceso">Plan</a>
-            <a href="#inversion">Inversión</a>
+            <a href="index.html" data-page="home">Inicio</a>
+            <a href="marketing.html" data-page="marketing">Marketing</a>
+            <a href="software.html" data-page="software">Sistemas</a>
+            <a href="diseno.html" data-page="design">Diseño</a>
             <a href="#contacto">Contacto</a>
           </nav>
 
@@ -68,33 +70,73 @@
         </button>
       </header>
 
-      <main id="inicio">
-        <section class="hero section">
-          <div class="hero-copy reveal">
-            <p class="eyebrow">Sistemas que ordenan. Redes que generan consultas. Diseño que inspira confianza.</p>
-            <h1>Impulsamos empresas de cualquier rubro con soluciones digitales que se ven serias y venden mejor.</h1>
+      <main>
+        <section class="hero section home-hero">
+          <div class="hero-copy hero-copy--wide reveal">
+            <p class="eyebrow">
+              Marketing, sistemas y diseño para empresas que necesitan crecer
+              con claridad
+            </p>
+            <h1
+              class="hero-dynamic-title"
+              aria-label="Tu empresa no necesita más ruido. Necesita más claridad, control y confianza."
+            >
+              Tu empresa no necesita más ruido.
+              <span class="hero-dynamic-break">
+                Necesita más
+                <span
+                  class="hero-word-stack"
+                  data-rotating-words
+                  data-rotation-interval="2400"
+                >
+                  <span class="hero-word is-active">claridad</span>
+                  <span class="hero-word">control</span>
+                  <span class="hero-word">confianza</span>
+                </span>
+              </span>
+            </h1>
             <p class="lead">
-              Diseñamos sistemas, piezas gráficas y gestión estratégica de contenido para que tu
-              marca crezca con una propuesta adaptada a su rubro, su operación y sus objetivos reales.
+              Unimos estrategia, desarrollo y diseño para que tu negocio se vea
+              profesional, opere con más orden y deje de depender de decisiones
+              improvisadas.
             </p>
 
+            <div class="hero-signal-row" aria-label="Áreas que coordinamos">
+              <span>Marketing</span>
+              <span>Sistemas</span>
+              <span>Diseño</span>
+            </div>
+
             <div class="hero-actions">
-              <a class="button button-primary" href="#contacto">Quiero cotizar</a>
-              <a class="button button-secondary" href="#inversion">Ver paquetes</a>
+              <a class="button button-primary" href="#servicios"
+                >Ver servicios</a
+              >
+              <a class="button button-secondary" href="#contacto"
+                >Hablar con un agente</a
+              >
             </div>
 
             <ul class="hero-stats" aria-label="Ventajas clave">
-              <li>
-                <strong>+70%</strong>
-                <span>Revisa redes y presencia digital antes de elegir una empresa o servicio de confianza.</span>
+              <li class="reveal">
+                <strong>Visibilidad con dirección</strong>
+                <span
+                  >Contenido, campañas y presencia digital con un objetivo
+                  comercial claro.</span
+                >
               </li>
-              <li>
-                <strong>Segmentación local</strong>
-                <span>Facebook e Instagram permiten llegar por zona e interés.</span>
+              <li class="reveal">
+                <strong>Operación más ordenada</strong>
+                <span
+                  >Sistemas y flujos pensados para bajar fricción y ganar
+                  control real.</span
+                >
               </li>
-              <li>
-                <strong>Más cercanía</strong>
-                <span>Contenido constante para ganar confianza y reconocimiento.</span>
+              <li class="reveal">
+                <strong>Marca más confiable</strong>
+                <span
+                  >Diseño y soporte visual para que la empresa se vea tan sólida
+                  como trabaja.</span
+                >
               </li>
             </ul>
           </div>
@@ -112,457 +154,354 @@
                 <div class="scene-floor"></div>
 
                 <div class="scene-rig">
-                  <div class="scene-ring scene-ring--outer" aria-hidden="true"></div>
-                  <div class="scene-ring scene-ring--inner" aria-hidden="true"></div>
+                  <div
+                    class="scene-ring scene-ring--outer"
+                    aria-hidden="true"
+                  ></div>
+                  <div
+                    class="scene-ring scene-ring--inner"
+                    aria-hidden="true"
+                  ></div>
 
                   <article class="scene-core">
-                    <p class="panel-label">Gestión de estrategia</p>
-                    <strong>Facebook + Instagram + TikTok</strong>
-                    <span>Calendario mensual, grabación profesional, edición de video y copy.</span>
+                    <p class="panel-label">ImpulsaPyME</p>
+                    <strong
+                      >Más claridad para vender. Más control para
+                      operar.</strong
+                    >
+                    <span
+                      >Combinamos marketing, sistemas y diseño según el momento
+                      real del negocio, sin inflar la propuesta.</span
+                    >
                   </article>
 
                   <div class="orbit orbit--one" aria-hidden="true">
                     <article class="orbit-card">
-                      <span>Facebook</span>
-                      <strong>Segmentación por zona</strong>
+                      <span>Marketing</span>
+                      <strong
+                        >Posicionamiento, contenido y campañas con
+                        intención</strong
+                      >
                     </article>
                   </div>
 
                   <div class="orbit orbit--two" aria-hidden="true">
                     <article class="orbit-card">
-                      <span>Instagram</span>
-                      <strong>Presencia ante la competencia</strong>
+                      <span>Sistemas</span>
+                      <strong
+                        >Procesos, dashboards e inventarios bajo control</strong
+                      >
                     </article>
                   </div>
 
                   <div class="orbit orbit--three" aria-hidden="true">
                     <article class="orbit-card">
-                      <span>TikTok</span>
-                      <strong>Reconocimiento con público joven</strong>
+                      <span>Diseño</span>
+                      <strong
+                        >Identidad y piezas que transmiten confianza</strong
+                      >
                     </article>
                   </div>
 
-                  <div class="scene-pill scene-pill--one">Básico · Bs 2000</div>
-                  <div class="scene-pill scene-pill--two">Integral · Bs 3000</div>
+                  <div class="scene-pill scene-pill--one">
+                    Santa Cruz · Bolivia
+                  </div>
+                  <div class="scene-pill scene-pill--two">
+                    Adaptado a cada rubro
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="benefit-band reveal" aria-label="Razones para estar en redes">
-          <article>
+        <section
+          class="proof-ticker reveal"
+          aria-label="Rubros donde adaptamos la propuesta"
+        >
+          <div class="proof-ticker__viewport">
+            <div class="proof-ticker__track">
+              <span>Gastronomía</span>
+              <span>Salud</span>
+              <span>Retail</span>
+              <span>Industria</span>
+              <span>Servicios</span>
+              <span>Educación</span>
+              <span>Construcción</span>
+              <span>Distribución</span>
+              <span>Inmobiliaria</span>
+              <span>Gastronomía</span>
+              <span>Salud</span>
+              <span>Retail</span>
+              <span>Industria</span>
+              <span>Servicios</span>
+              <span>Educación</span>
+              <span>Construcción</span>
+              <span>Distribución</span>
+              <span>Inmobiliaria</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="benefit-band home-band" aria-label="Resumen de áreas">
+          <article class="reveal">
             <span>01</span>
-            <h2>Las redes ya forman parte del proceso de decisión en casi cualquier rubro.</h2>
+            <h2>
+              Marketing para ganar visibilidad, confianza y nuevas oportunidades
+              comerciales.
+            </h2>
           </article>
-          <article>
+          <article class="reveal">
             <span>02</span>
-            <h2>Una estrategia clara mejora confianza, cercanía y liderazgo frente a la competencia.</h2>
+            <h2>
+              Sistemas para automatizar tareas, ordenar datos y mejorar la
+              operación diaria.
+            </h2>
           </article>
-          <article>
+          <article class="reveal">
             <span>03</span>
-            <h2>La meta no es publicar más, sino generar consultas con mejor percepción de marca.</h2>
+            <h2>
+              Diseño para que la marca se vea profesional, coherente y lista
+              para vender.
+            </h2>
           </article>
         </section>
 
-        <section class="section" id="servicios">
+        <section class="section home-contrast" id="enfoque">
+          <div class="home-contrast__shell reveal">
+            <div class="home-contrast__copy">
+              <p class="eyebrow">Punto de partida</p>
+              <h2>Más clientes, menos improvisación.</h2>
+              <p>
+                Cuando la marca no comunica, la operación depende de parches y
+                cada acción digital va por su cuenta, crecer cuesta más de lo
+                necesario.
+              </p>
+              <p class="home-contrast__micro">
+                Lo resolvemos alineando mensaje, sistema y diseño desde el
+                inicio.
+              </p>
+            </div>
+
+            <div class="home-contrast__aside">
+              <div class="home-contrast__rail" aria-hidden="true">
+                <div class="home-contrast__rail-track">
+                  <span>CLARIDAD</span>
+                  <span>CONTROL</span>
+                  <span>CONFIANZA</span>
+                  <span>RESULTADO</span>
+                  <span>CLARIDAD</span>
+                  <span>CONTROL</span>
+                  <span>CONFIANZA</span>
+                  <span>RESULTADO</span>
+                </div>
+              </div>
+
+              <article class="home-contrast__summary">
+                <p class="panel-label">ImpulsaPyME</p>
+                <strong
+                  >Una sola propuesta para ordenar lo que hoy está
+                  suelto.</strong
+                >
+                <ul>
+                  <li>Definimos qué comunicar y cómo diferenciarte.</li>
+                  <li>
+                    Elegimos el sistema o flujo correcto para tu operación.
+                  </li>
+                  <li>
+                    Hacemos que la marca se vea tan sólida como el servicio.
+                  </li>
+                </ul>
+              </article>
+            </div>
+
+            <div class="home-contrast__grid">
+              <article class="impact-card">
+                <span>01 · Marketing</span>
+                <strong>Claridad comercial</strong>
+                <p>
+                  El mercado tiene que entender rápido qué haces, para quién es
+                  y por qué debería elegirte.
+                </p>
+              </article>
+              <article class="impact-card">
+                <span>02 · Sistemas</span>
+                <strong>Control operativo</strong>
+                <p>
+                  Los procesos correctos reducen errores, ordenan datos y te
+                  devuelven tiempo para decidir mejor.
+                </p>
+              </article>
+              <article class="impact-card">
+                <span>03 · Diseño</span>
+                <strong>Confianza visual</strong>
+                <p>
+                  La marca, las piezas y la experiencia deben verse tan serias
+                  como la empresa que representan.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="home-loop" aria-hidden="true">
+          <div class="home-loop__track">
+            <span>Más claridad digital</span>
+            <span>Más control operativo</span>
+            <span>Más confianza visual</span>
+            <span>Menos improvisación</span>
+            <span>Más claridad digital</span>
+            <span>Más control operativo</span>
+            <span>Más confianza visual</span>
+            <span>Menos improvisación</span>
+          </div>
+        </section>
+
+        <section class="section home-services" id="servicios">
           <div class="section-heading reveal">
-            <p class="eyebrow">Servicios</p>
-            <h2>Una propuesta integral dividida en áreas claras: marketing, sistemas y diseño.</h2>
+            <p class="eyebrow">Áreas</p>
+            <h2>
+              Cada servicio ahora vive en su propia página para que sea más
+              fácil explorar y cotizar.
+            </h2>
+            <p>
+              Entra al área que más te interese y revisa el detalle completo de
+              la propuesta.
+            </p>
           </div>
 
           <div class="service-grid">
             <article class="service-card reveal">
-              <p class="card-kicker">Área marketing y redes</p>
-              <h3>Estrategia mensual para Facebook, Instagram y contenido adaptable a TikTok.</h3>
+              <p class="card-kicker">Marketing y redes</p>
+              <h3>
+                Estrategia, contenido y campañas para que tu marca deje de
+                publicar sin dirección.
+              </h3>
               <p>
-                Mantenemos un enfoque planificado con objetivos claros y alineados con la marca,
-                en lugar de publicar contenido sin dirección.
+                Gestionamos presencia digital con planificación, grabación,
+                edición y copy para atraer mejor atención y construir confianza
+                en redes.
               </p>
               <ul>
-                <li>Calendario mensual de publicaciones</li>
-                <li>Grabación profesional y edición de video</li>
-                <li>Copy profesional para cada publicación</li>
+                <li>Calendario mensual y estrategia</li>
+                <li>Grabación profesional y edición de reels</li>
+                <li>Beneficios, propuesta, plan, inversión y términos</li>
               </ul>
-            </article>
-
-            <article class="service-card reveal">
-              <p class="card-kicker">Área sistemas</p>
-              <h3>Herramientas digitales para captar, filtrar y organizar consultas.</h3>
-              <p>
-                Construimos landing pages, formularios y flujos simples para que la marca no
-                dependa solo del chat improvisado.
-              </p>
-              <ul>
-                <li>Landing pages y páginas corporativas</li>
-                <li>Formularios, reservas y seguimiento</li>
-                <li>Sistemas ligeros para centralizar datos</li>
-              </ul>
-            </article>
-
-            <article class="service-card reveal">
-              <p class="card-kicker">Área diseño gráfico</p>
-              <h3>Piezas visuales que hacen que la marca se vea confiable y consistente.</h3>
-              <p>
-                Diseñamos una imagen sólida para publicaciones, campañas, presentaciones y
-                materiales de venta digitales.
-              </p>
-              <ul>
-                <li>Creatividades para redes y campañas</li>
-                <li>Sistema visual y soporte de marca</li>
-                <li>Presentaciones comerciales y PDFs</li>
-              </ul>
-            </article>
-          </div>
-        </section>
-
-        <section class="section software-section" id="software">
-          <div class="software-intro">
-            <div class="section-heading reveal">
-              <p class="eyebrow">Área sistemas</p>
-              <h2>Desarrollo de software a medida para mejorar eficiencia, automatización y crecimiento.</h2>
-              <p>
-                Como Ingeniero de Sistemas, desarrollo soluciones tecnológicas personalizadas para
-                empresas de cualquier rubro que necesitan más control operativo, mejores datos y
-                herramientas adaptadas a su forma real de trabajar.
-              </p>
-            </div>
-
-            <div class="systems-visual reveal">
-              <div
-                class="systems-scene"
-                data-tilt
-                data-tilt-base-x="-10"
-                data-tilt-base-y="-14"
-                data-tilt-range-x="12"
-                data-tilt-range-y="16"
-              >
-                <div class="systems-stage">
-                  <div class="systems-floor"></div>
-
-                  <div class="systems-rig">
-                    <div class="systems-gridplane systems-gridplane--one" aria-hidden="true"></div>
-                    <div class="systems-gridplane systems-gridplane--two" aria-hidden="true"></div>
-
-                    <article class="systems-core">
-                      <p class="panel-label">Software a medida</p>
-                      <strong>Apps y webs a medida para operar mejor y crecer con orden</strong>
-                      <span>Desarrollo web, inventarios, reportes y gestión de datos en bases reales para PyMEs.</span>
-                    </article>
-
-                    <article class="systems-panel systems-panel--one" aria-hidden="true">
-                      <span>Inventario</span>
-                      <strong>Stock en tiempo real</strong>
-                    </article>
-
-                    <article class="systems-panel systems-panel--two" aria-hidden="true">
-                      <span>Apps y web</span>
-                      <strong>Desarrollo a medida</strong>
-                    </article>
-
-                    <article class="systems-panel systems-panel--three" aria-hidden="true">
-                      <span>Gestión de datos</span>
-                      <strong>Bases de datos reales</strong>
-                    </article>
-
-                    <div class="systems-node systems-node--one"></div>
-                    <div class="systems-node systems-node--two"></div>
-                    <div class="systems-node systems-node--three"></div>
-                  </div>
-                </div>
+              <div class="card-actions">
+                <a class="button button-secondary" href="marketing.html"
+                  >Ver marketing</a
+                >
               </div>
-            </div>
-          </div>
-
-          <div class="software-grid">
-            <article class="software-card reveal">
-              <p class="card-kicker">Desarrollo de sistemas web</p>
-              <h3>Plataformas internas para administrar y vender con más orden.</h3>
-              <ul>
-                <li>Sistemas administrativos</li>
-                <li>Paneles de control y dashboards</li>
-                <li>Gestión de usuarios y roles</li>
-                <li>Sistemas de ventas y facturación</li>
-              </ul>
             </article>
 
-            <article class="software-card reveal">
-              <p class="card-kicker">Gestión de inventarios</p>
-              <h3>Control en tiempo real para productos, stock y movimiento comercial.</h3>
-              <ul>
-                <li>Control de stock en tiempo real</li>
-                <li>Alertas de productos</li>
-                <li>Reportes inteligentes</li>
-                <li>Integración con ventas</li>
-              </ul>
-            </article>
-
-            <article class="software-card reveal">
-              <p class="card-kicker">Dashboards para empresas</p>
-              <h3>Visualización clara para tomar decisiones con datos reales.</h3>
-              <ul>
-                <li>Visualización de datos en tiempo real</li>
-                <li>Gráficos y métricas clave (KPIs)</li>
-                <li>Análisis para toma de decisiones</li>
-              </ul>
-            </article>
-
-            <article class="software-card reveal">
-              <p class="card-kicker">Bases de datos</p>
-              <h3>Diseño, seguridad y optimización para que el sistema no falle donde más importa.</h3>
-              <ul>
-                <li>MySQL y PostgreSQL</li>
-                <li>Seguridad y respaldo de información</li>
-                <li>Integración con sistemas existentes</li>
-              </ul>
-            </article>
-
-            <article class="software-card reveal">
-              <p class="card-kicker">Aplicaciones</p>
-              <h3>Soluciones modernas para web y móvil según el flujo real de cada empresa.</h3>
-              <ul>
-                <li>Aplicaciones web modernas y responsivas</li>
-                <li>Apps móviles con React Native</li>
-                <li>Sistemas según requerimientos del cliente</li>
-              </ul>
-            </article>
-
-            <article class="software-card reveal">
-              <p class="card-kicker">Software a medida</p>
-              <h3>Desarrollo enfocado en necesidades específicas, escalabilidad y rendimiento.</h3>
-              <ul>
-                <li>Desarrollo 100% personalizado</li>
-                <li>Interfaces intuitivas y fáciles de usar</li>
-                <li>Escalabilidad y rendimiento optimizado</li>
-              </ul>
-            </article>
-          </div>
-
-          <div class="software-summary">
-            <article class="software-benefits reveal">
-              <p class="panel-label">Beneficios incluidos</p>
-              <ul>
-                <li>Desarrollo 100% personalizado</li>
-                <li>Asesoramiento técnico</li>
-                <li>Código optimizado y escalable</li>
-                <li>Capacitación básica de uso</li>
-                <li>Mantenimiento y soporte por 3 meses incluidos</li>
-              </ul>
-            </article>
-
-            <article class="software-price reveal">
-              <p class="panel-label">Precio base</p>
-              <h3>Desde 1,500 Bs</h3>
-              <p>El costo puede variar según la complejidad del proyecto y los requerimientos del cliente.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="section" id="beneficios">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Beneficios</p>
-            <h2>Por qué cualquier empresa necesita una estrategia seria en redes, sin importar el rubro.</h2>
-          </div>
-
-          <div class="benefits-grid">
-            <article class="benefit-card reveal">
-              <strong>Más del 70% revisa redes</strong>
-              <p>La presencia digital influye directamente en la elección del cliente.</p>
-            </article>
-            <article class="benefit-card reveal">
-              <strong>Segmentación por zona e interés</strong>
-              <p>Meta permite llegar a públicos específicos según ubicación y comportamiento.</p>
-            </article>
-            <article class="benefit-card reveal">
-              <strong>Reconocimiento joven</strong>
-              <p>Instagram y TikTok ayudan a conectar con audiencias nuevas y más activas.</p>
-            </article>
-            <article class="benefit-card reveal">
-              <strong>Más presencia competitiva</strong>
-              <p>Tu marca deja de quedarse invisible mientras otras ocupan la atención del mercado.</p>
-            </article>
-            <article class="benefit-card reveal">
-              <strong>Confianza y cercanía</strong>
-              <p>El contenido bien planteado humaniza la marca y reduce la distancia con el público.</p>
-            </article>
-            <article class="benefit-card reveal">
-              <strong>Posicionamiento y consultas</strong>
-              <p>La estrategia correcta no solo luce bien: también ayuda a generar oportunidades reales.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="section strategy-section">
-          <div class="strategy-layout">
-            <div class="section-heading reveal">
-              <p class="eyebrow">¿Qué proponemos?</p>
-              <h2>Una gestión de estrategia con producción de contenido, no solo publicaciones sueltas.</h2>
+            <article class="service-card reveal">
+              <p class="card-kicker">Sistemas</p>
+              <h3>
+                Software a medida para PyMEs que necesitan más control,
+                automatización y datos reales.
+              </h3>
               <p>
-                La propuesta combina planificación, producción y seguimiento para construir
-                reconocimiento, confianza y mayor flujo de consultas.
+                Desarrollamos sistemas web, inventarios, dashboards y bases de
+                datos pensados para la operación real de cada empresa.
               </p>
-            </div>
+              <ul>
+                <li>Sistemas administrativos y ventas</li>
+                <li>Inventarios, dashboards y apps</li>
+                <li>Beneficios incluidos, precio base y flujo de trabajo</li>
+              </ul>
+              <div class="card-actions">
+                <a class="button button-secondary" href="software.html"
+                  >Ver sistemas</a
+                >
+              </div>
+            </article>
 
-            <div class="proposal-stack reveal">
-              <article class="proposal-card">
-                <p class="panel-label">Plataformas</p>
-                <strong>Facebook, Instagram y TikTok</strong>
-                <span>Elegimos el papel correcto de cada canal dentro de la estrategia.</span>
-              </article>
-              <article class="proposal-card">
-                <p class="panel-label">Incluye</p>
-                <strong>Calendario + grabación + edición + copy</strong>
-                <span>Producción profesional para reels, videos cortos y contenido informativo.</span>
-              </article>
-            </div>
+            <article class="service-card reveal">
+              <p class="card-kicker">Diseño gráfico</p>
+              <h3>
+                Piezas visuales, identidad y materiales comerciales para que tu
+                empresa se vea sólida.
+              </h3>
+              <p>
+                Creamos soporte visual adaptable a cualquier rubro para redes,
+                campañas, presentaciones y materiales que ayudan a vender mejor.
+              </p>
+              <ul>
+                <li>Identidad visual y lineamientos</li>
+                <li>Creatividades para redes y campañas</li>
+                <li>Entregables, proceso y soporte visual continuo</li>
+              </ul>
+              <div class="card-actions">
+                <a class="button button-secondary" href="diseno.html"
+                  >Ver diseño</a
+                >
+              </div>
+            </article>
           </div>
         </section>
 
-        <section class="section" id="proceso">
+        <section class="section home-process" id="proceso">
           <div class="section-heading reveal">
-            <p class="eyebrow">Plan de trabajo</p>
-            <h2>Próximos pasos para pasar de la coordinación a la publicación activa.</h2>
+            <p class="eyebrow">Forma de trabajo</p>
+            <h2>
+              Trabajamos por etapas para adaptar la solución correcta a cada
+              empresa.
+            </h2>
           </div>
 
           <div class="process-grid process-grid--three">
             <article class="process-step reveal">
               <span>Fase 1</span>
-              <h3>Reunión de alineación y coordinación</h3>
-              <p>Definimos objetivos, tono, referencias, logística y prioridades del contenido.</p>
+              <h3>Diagnóstico y enfoque</h3>
+              <p>
+                Revisamos tu rubro, objetivos, operación actual y prioridad
+                comercial antes de proponer.
+              </p>
             </article>
             <article class="process-step reveal">
               <span>Fase 2</span>
-              <h3>Diseño de contenido</h3>
-              <p>Producimos piezas, grabación, edición y textos con criterio visual y estratégico.</p>
+              <h3>Producción y desarrollo</h3>
+              <p>
+                Ejecutamos el área elegida con diseño, contenido o sistemas
+                alineados a tu necesidad real.
+              </p>
             </article>
             <article class="process-step reveal">
               <span>Fase 3</span>
-              <h3>Inicio de publicaciones y seguimiento</h3>
-              <p>Activamos el plan, revisamos respuesta y mantenemos la ejecución ordenada.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="section" id="inversion">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Inversión</p>
-            <h2>Paquetes mensuales y precios individuales para contenido en redes.</h2>
-          </div>
-
-          <div class="pricing-grid">
-            <article class="price-card reveal">
-              <p class="card-kicker">Paquete básico</p>
-              <h3>12 publicaciones al mes</h3>
-              <p class="price">Bs 2000</p>
-              <ul>
-                <li>3 publicaciones por semana</li>
-                <li>Gestión de redes por 1 mes</li>
-                <li>Grabación y edición de videos cortos</li>
-                <li>Contenido optimizado para reels y TikTok</li>
-              </ul>
-            </article>
-
-            <article class="price-card reveal price-card--featured">
-              <p class="card-kicker">Paquete integral</p>
-              <h3>16 publicaciones al mes</h3>
-              <p class="price">Bs 3000</p>
-              <ul>
-                <li>4 publicaciones por semana</li>
-                <li>Gestión de redes por 1 mes</li>
-                <li>Grabación y edición de videos cortos</li>
-                <li>Contenido optimizado para reels y TikTok</li>
-              </ul>
-            </article>
-
-            <article class="side-card reveal">
-              <p class="panel-label">Precios individuales</p>
-              <div class="side-card__price">
-                <strong>Video editado de 30 seg. a 1 min.</strong>
-                <span>Bs 250</span>
-              </div>
-              <div class="side-card__price">
-                <strong>Video editado de más de 1 min.</strong>
-                <span>Bs 320</span>
-              </div>
+              <h3>Implementación y seguimiento</h3>
               <p>
-                El material se elabora con coordinación previa y se entrega en alta calidad. La
-                difusión pagada o pauta en redes no está incluida.
+                Entregamos, activamos y acompañamos para que la solución se use
+                bien desde el inicio.
               </p>
             </article>
           </div>
-
-          <div class="note-grid">
-            <article class="note-card reveal">
-              <strong>Alcance de plataformas</strong>
-              <p>Los paquetes mensuales se aplican a Facebook e Instagram, con contenido adaptado para reels y TikTok.</p>
-            </article>
-            <article class="note-card reveal">
-              <strong>Publicidad pagada</strong>
-              <p>El presupuesto de Meta Ads y la pauta en TikTok Studio es ajeno al costo del servicio.</p>
-            </article>
-          </div>
         </section>
 
-        <section class="section section-highlight">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Términos y condiciones</p>
-            <h2>Condiciones claras para producción, coordinación, pagos y revisiones.</h2>
-          </div>
-
-          <div class="terms-grid">
-            <article class="terms-card reveal">
-              <strong>Entregas y tiempos</strong>
-              <p>Los tiempos se coordinan al contratar y empiezan desde la confirmación del pago.</p>
-            </article>
-            <article class="terms-card reveal">
-              <strong>Sesiones programadas</strong>
-              <p>El contenido se produce en sesiones agendadas; retrasos del cliente extienden los plazos.</p>
-            </article>
-            <article class="terms-card reveal">
-              <strong>Pausas del servicio</strong>
-              <p>Si no hay respuesta dentro de 7 días desde la última comunicación, el servicio entra en pausa.</p>
-            </article>
-            <article class="terms-card reveal">
-              <strong>Coordinación</strong>
-              <p>Las sesiones se agendan con 48 horas y los cambios deben avisarse con al menos 24 horas.</p>
-            </article>
-            <article class="terms-card reveal">
-              <strong>Pagos</strong>
-              <p>Se requiere anticipo del 50% para iniciar. Los paquetes mensuales se pagan al inicio de cada mes.</p>
-            </article>
-            <article class="terms-card reveal">
-              <strong>Revisiones</strong>
-              <p>Cada paquete incluye una revisión. Cambios adicionales o fuera de alcance se cotizan aparte.</p>
-            </article>
-            <article class="terms-card reveal">
-              <strong>Cancelaciones</strong>
-              <p>Si el trabajo ya inició, el anticipo no es reembolsable. Si el proveedor no puede completar, se reintegra proporcionalmente.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="section contact-section" id="contacto">
+        <section class="section contact-section home-contact" id="contacto">
           <div class="contact-card reveal">
             <div>
               <p class="eyebrow">Contacto</p>
-              <h2>Gracias por su tiempo. Si quiere activar esta propuesta, coordinamos la siguiente reunión.</h2>
+              <h2>
+                Si ya sabes qué área necesitas, coordinamos la siguiente
+                conversación.
+              </h2>
               <p>
-                Contacto directo con Julieth para cotizaciones, coordinación y puesta en marcha del
-                servicio. Somos agentes ubicados en Santa Cruz, Bolivia, y trabajamos con empresas
-                de cualquier rubro adaptando soluciones según su etapa y necesidad.
+                Somos agentes ubicados en Santa Cruz, Bolivia, y trabajamos con
+                empresas de cualquier rubro adaptando soluciones en marketing,
+                sistemas y diseño.
               </p>
             </div>
 
             <div class="contact-actions">
               <a
                 class="button button-primary"
-                href="mailto:julieth3357t@gmail.com?subject=Quiero%20cotizar%20gesti%C3%B3n%20de%20redes"
+                href="mailto:julieth3357t@gmail.com?subject=Quiero%20cotizar%20soluciones%20digitales"
               >
                 julieth3357t@gmail.com
               </a>
               <a
                 class="button button-secondary"
-                href="https://wa.me/59175541660?text=Hola%2C%20quiero%20cotizar%20la%20propuesta%20de%20redes"
+                href="https://wa.me/59175541660?text=Hola%2C%20quiero%20cotizar%20soluciones%20digitales%20para%20mi%20empresa"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -571,13 +510,20 @@
             </div>
 
             <div class="contact-meta">
-              <button class="copy-chip" type="button" data-copy="julieth3357t@gmail.com">
+              <button
+                class="copy-chip"
+                type="button"
+                data-copy="julieth3357t@gmail.com"
+              >
                 Copiar correo
               </button>
               <button class="copy-chip" type="button" data-copy="75541660">
                 Copiar WhatsApp
               </button>
-              <span class="microcopy">Agentes ubicados en Santa Cruz, Bolivia. Atención a empresas de cualquier rubro con soluciones adaptadas en sistemas, redes y diseño.</span>
+              <span class="microcopy"
+                >Agentes ubicados en Santa Cruz, Bolivia. Atención a empresas de
+                cualquier rubro con soluciones adaptadas.</span
+              >
             </div>
           </div>
         </section>
@@ -585,7 +531,10 @@
 
       <footer class="footer">
         <p>ImpulsaPyME</p>
-        <p><span id="current-year"></span> · Portafolio listo para GitHub Pages</p>
+        <p>
+          <span id="current-year"></span> · Portafolio multipágina listo para
+          GitHub Pages
+        </p>
       </footer>
     </div>
   </body>

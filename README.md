@@ -1,10 +1,13 @@
 # ImpulsaPyME
 
-Portafolio estático para una agencia que vende sistemas, gestión estratégica de redes y diseño gráfico, con una propuesta dirigida a empresas de cualquier rubro y soluciones adaptadas a cada necesidad.
+Portafolio estático multipágina para una agencia que vende sistemas, gestión estratégica de redes y diseño gráfico, con una propuesta dirigida a empresas de cualquier rubro y soluciones adaptadas a cada necesidad.
 
 ## Archivos principales
 
-- `index.html`: estructura del sitio
+- `index.html`: portada general y acceso a cada área
+- `marketing.html`: propuesta de marketing y redes
+- `software.html`: servicios de desarrollo de software a medida
+- `diseno.html`: servicios de diseño gráfico
 - `styles.css`: diseño visual y responsive
 - `script.js`: menú móvil, animaciones y botones de copiado
 - `assets/favicon.svg`: favicon del sitio

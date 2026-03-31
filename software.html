@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Desarrollo de software a medida para empresas de cualquier rubro: sistemas web, inventarios, dashboards, bases de datos y apps."
+    />
+    <meta name="theme-color" content="#f4eadc" id="theme-color-meta" />
+    <title>ImpulsaPyME | Software a Medida</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body data-page="software">
+    <div class="background-glow background-glow--left"></div>
+    <div class="background-glow background-glow--right"></div>
+
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="index.html" aria-label="Ir al inicio">
+          <span class="brand-mark" aria-hidden="true">
+            <img src="assets/brand-mark.svg" alt="" />
+          </span>
+          <span class="brand-copy">
+            <strong>Impulsa Pequeñas y Medianas Empresas</strong>
+            <small>Soluciones digitales adaptadas para empresas de cualquier rubro</small>
+          </span>
+        </a>
+
+        <div class="topbar-actions">
+          <nav class="site-nav" id="site-nav" aria-label="Principal">
+            <a href="index.html" data-page="home">Inicio</a>
+            <a href="marketing.html" data-page="marketing">Marketing</a>
+            <a href="software.html" data-page="software">Sistemas</a>
+            <a href="diseno.html" data-page="design">Diseño</a>
+            <a href="#contacto">Contacto</a>
+          </nav>
+
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label="Cambiar tema"
+            aria-pressed="false"
+          >
+            <span class="theme-toggle__track">
+              <span class="theme-toggle__thumb"></span>
+            </span>
+            <span class="theme-toggle__label">Modo oscuro</span>
+          </button>
+        </div>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Abrir menú"
+        >
+          <span class="nav-toggle__icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <span class="nav-toggle__label">Menú</span>
+        </button>
+      </header>
+
+      <main>
+        <section class="hero section">
+          <div class="hero-copy hero-copy--wide reveal">
+            <p class="eyebrow">Área sistemas</p>
+            <h1>Software a medida para empresas que quieren operar con más control, automatización y datos reales.</h1>
+            <p class="lead">
+              Como Ingeniero de Sistemas, desarrollo soluciones tecnológicas personalizadas para
+              empresas de cualquier rubro que necesitan ordenar procesos, reducir errores y crecer
+              con herramientas adaptadas a su operación.
+            </p>
+
+            <div class="hero-actions">
+              <a class="button button-primary" href="#soluciones">Ver soluciones</a>
+              <a class="button button-secondary" href="#contacto">Solicitar cotización</a>
+            </div>
+
+            <ul class="hero-stats" aria-label="Ventajas clave">
+              <li>
+                <strong>100% personalizado</strong>
+                <span>El sistema se construye según el flujo real de la empresa, no al revés.</span>
+              </li>
+              <li>
+                <strong>Datos y control</strong>
+                <span>Centraliza inventarios, usuarios, ventas y reportes en una sola lógica.</span>
+              </li>
+              <li>
+                <strong>Escalable</strong>
+                <span>La solución queda lista para crecer con nuevas áreas, módulos y usuarios.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="systems-visual reveal">
+            <div
+              class="systems-scene"
+              data-tilt
+              data-tilt-base-x="-10"
+              data-tilt-base-y="-14"
+              data-tilt-range-x="12"
+              data-tilt-range-y="16"
+            >
+              <div class="systems-stage">
+                <div class="systems-floor"></div>
+
+                <div class="systems-rig">
+                  <div class="systems-gridplane systems-gridplane--one" aria-hidden="true"></div>
+                  <div class="systems-gridplane systems-gridplane--two" aria-hidden="true"></div>
+
+                  <article class="systems-core">
+                    <p class="panel-label">Software a medida</p>
+                    <strong>Apps y webs a medida para operar mejor y crecer con orden</strong>
+                    <span>Desarrollo web, inventarios, reportes y gestión de datos en bases reales para PyMEs.</span>
+                  </article>
+
+                  <article class="systems-panel systems-panel--one" aria-hidden="true">
+                    <span>Inventario</span>
+                    <strong>Stock en tiempo real</strong>
+                  </article>
+
+                  <article class="systems-panel systems-panel--two" aria-hidden="true">
+                    <span>Apps y web</span>
+                    <strong>Desarrollo a medida</strong>
+                  </article>
+
+                  <article class="systems-panel systems-panel--three" aria-hidden="true">
+                    <span>Gestión de datos</span>
+                    <strong>Bases de datos reales</strong>
+                  </article>
+
+                  <div class="systems-node systems-node--one"></div>
+                  <div class="systems-node systems-node--two"></div>
+                  <div class="systems-node systems-node--three"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="benefit-band reveal" aria-label="Razones para digitalizar procesos">
+          <article>
+            <span>01</span>
+            <h2>Automatizar tareas repetitivas reduce errores y mejora el tiempo de respuesta.</h2>
+          </article>
+          <article>
+            <span>02</span>
+            <h2>Centralizar información permite controlar mejor ventas, stock, usuarios y métricas.</h2>
+          </article>
+          <article>
+            <span>03</span>
+            <h2>Un sistema bien diseñado ayuda a crecer con más orden y mejores decisiones.</h2>
+          </article>
+        </section>
+
+        <section class="section software-section" id="soluciones">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Soluciones</p>
+            <h2>Desarrollo de software orientado a eficiencia, automatización y crecimiento.</h2>
+          </div>
+
+          <div class="software-grid">
+            <article class="software-card reveal">
+              <p class="card-kicker">Desarrollo de sistemas web</p>
+              <h3>Plataformas internas para administrar y vender con más orden.</h3>
+              <ul>
+                <li>Sistemas administrativos</li>
+                <li>Paneles de control y dashboards</li>
+                <li>Gestión de usuarios y roles</li>
+                <li>Sistemas de ventas y facturación</li>
+              </ul>
+            </article>
+
+            <article class="software-card reveal">
+              <p class="card-kicker">Gestión de inventarios</p>
+              <h3>Control en tiempo real para productos, stock y movimiento comercial.</h3>
+              <ul>
+                <li>Control de stock en tiempo real</li>
+                <li>Alertas de productos</li>
+                <li>Reportes inteligentes</li>
+                <li>Integración con ventas</li>
+              </ul>
+            </article>
+
+            <article class="software-card reveal">
+              <p class="card-kicker">Dashboards para empresas</p>
+              <h3>Visualización clara para tomar decisiones con datos reales.</h3>
+              <ul>
+                <li>Visualización de datos en tiempo real</li>
+                <li>Gráficos y métricas clave (KPIs)</li>
+                <li>Análisis para toma de decisiones</li>
+              </ul>
+            </article>
+
+            <article class="software-card reveal">
+              <p class="card-kicker">Bases de datos</p>
+              <h3>Diseño, seguridad y optimización para que el sistema no falle donde más importa.</h3>
+              <ul>
+                <li>MySQL y PostgreSQL</li>
+                <li>Seguridad y respaldo de información</li>
+                <li>Integración con sistemas existentes</li>
+              </ul>
+            </article>
+
+            <article class="software-card reveal">
+              <p class="card-kicker">Aplicaciones</p>
+              <h3>Soluciones modernas para web y móvil según el flujo real de cada empresa.</h3>
+              <ul>
+                <li>Aplicaciones web modernas y responsivas</li>
+                <li>Apps móviles con React Native</li>
+                <li>Sistemas según requerimientos del cliente</li>
+              </ul>
+            </article>
+
+            <article class="software-card reveal">
+              <p class="card-kicker">Software a medida</p>
+              <h3>Desarrollo enfocado en necesidades específicas, escalabilidad y rendimiento.</h3>
+              <ul>
+                <li>Desarrollo 100% personalizado</li>
+                <li>Interfaces intuitivas y fáciles de usar</li>
+                <li>Escalabilidad y rendimiento optimizado</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="software-summary">
+            <article class="software-benefits reveal">
+              <p class="panel-label">Beneficios incluidos</p>
+              <ul>
+                <li>Desarrollo 100% personalizado</li>
+                <li>Asesoramiento técnico</li>
+                <li>Código optimizado y escalable</li>
+                <li>Capacitación básica de uso</li>
+                <li>Mantenimiento y soporte por 3 meses incluidos</li>
+              </ul>
+            </article>
+
+            <article class="software-price reveal">
+              <p class="panel-label">Precio base</p>
+              <h3>Desde 1,500 Bs</h3>
+              <p>El costo puede variar según la complejidad del proyecto y los requerimientos del cliente.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="proceso">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Implementación</p>
+            <h2>Así llevamos una idea de software desde el diagnóstico hasta la puesta en marcha.</h2>
+          </div>
+
+          <div class="process-grid process-grid--three">
+            <article class="process-step reveal">
+              <span>Fase 1</span>
+              <h3>Diagnóstico y alcance</h3>
+              <p>Revisamos procesos, usuarios, datos, prioridades y objetivos para definir una solución coherente.</p>
+            </article>
+            <article class="process-step reveal">
+              <span>Fase 2</span>
+              <h3>Desarrollo y validación</h3>
+              <p>Construimos módulos, dashboards o integraciones y validamos que respondan al flujo real del negocio.</p>
+            </article>
+            <article class="process-step reveal">
+              <span>Fase 3</span>
+              <h3>Entrega y soporte</h3>
+              <p>Implementamos, capacitamos al equipo y damos soporte inicial para que el sistema arranque bien.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="beneficios">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Valor agregado</p>
+            <h2>Un enfoque técnico pensado para negocios reales, no solo para mostrar pantallas bonitas.</h2>
+          </div>
+
+          <div class="note-grid">
+            <article class="note-card reveal">
+              <strong>Adaptado al rubro</strong>
+              <p>Cada módulo se define según la operación real de la empresa, su equipo y su nivel de crecimiento.</p>
+            </article>
+            <article class="note-card reveal">
+              <strong>Datos seguros</strong>
+              <p>Diseñamos estructuras de base de datos, respaldos y criterios de acceso para cuidar la información.</p>
+            </article>
+            <article class="note-card reveal">
+              <strong>Escalabilidad</strong>
+              <p>La solución puede crecer con nuevos usuarios, módulos, reportes o integraciones a futuro.</p>
+            </article>
+            <article class="note-card reveal">
+              <strong>Soporte inicial</strong>
+              <p>La entrega no termina en la publicación: acompañamos la puesta en marcha y el uso básico.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section contact-section" id="contacto">
+          <div class="contact-card reveal">
+            <div>
+              <p class="eyebrow">Contacto</p>
+              <h2>Si quieres cotizar software a medida, revisamos el alcance y definimos la mejor ruta.</h2>
+              <p>
+                Somos agentes ubicados en Santa Cruz, Bolivia, y desarrollamos soluciones para
+                empresas de cualquier rubro con enfoque técnico y comercial.
+              </p>
+            </div>
+
+            <div class="contact-actions">
+              <a
+                class="button button-primary"
+                href="mailto:julieth3357t@gmail.com?subject=Quiero%20cotizar%20software%20a%20medida"
+              >
+                julieth3357t@gmail.com
+              </a>
+              <a
+                class="button button-secondary"
+                href="https://wa.me/59175541660?text=Hola%2C%20quiero%20cotizar%20software%20a%20medida%20para%20mi%20empresa"
+                target="_blank"
+                rel="noreferrer"
+              >
+                WhatsApp: 755 41 660
+              </a>
+            </div>
+
+            <div class="contact-meta">
+              <button class="copy-chip" type="button" data-copy="julieth3357t@gmail.com">
+                Copiar correo
+              </button>
+              <button class="copy-chip" type="button" data-copy="75541660">
+                Copiar WhatsApp
+              </button>
+              <span class="microcopy">Agentes ubicados en Santa Cruz, Bolivia. Atención a empresas de cualquier rubro con soluciones adaptadas en marketing, sistemas y diseño.</span>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>ImpulsaPyME</p>
+        <p><span id="current-year"></span> · Software a medida</p>
+      </footer>
+    </div>
+  </body>
+</html>

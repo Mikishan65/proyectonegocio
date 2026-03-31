@@ -1,13 +1,19 @@
 const root = document.documentElement;
+const currentPage = document.body.dataset.page || "home";
 const topbar = document.querySelector(".topbar");
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
-const navLinks = document.querySelectorAll(".site-nav a");
+const navLinks = Array.from(document.querySelectorAll(".site-nav a"));
+const inPageNavLinks = navLinks.filter((link) => {
+  const href = link.getAttribute("href");
+  return Boolean(href) && href.startsWith("#");
+});
 const revealItems = document.querySelectorAll(".reveal");
 const copyButtons = document.querySelectorAll("[data-copy]");
 const tiltScenes = document.querySelectorAll("[data-tilt]");
+const rotatingWordGroups = document.querySelectorAll("[data-rotating-words]");
 const interactiveCards = document.querySelectorAll(
-  ".hero-stats li, .benefit-band article, .service-card, .software-card, .software-benefits, .software-price, .benefit-card, .proposal-card, .process-step, .price-card, .side-card, .note-card, .terms-card, .contact-card",
+  ".hero-stats li, .benefit-band article, .service-card, .software-card, .software-benefits, .software-price, .benefit-card, .proposal-card, .process-step, .price-card, .side-card, .note-card, .terms-card, .contact-card, .impact-card, .home-contrast__summary",
 );
 const themeToggle = document.querySelector(".theme-toggle");
 const themeToggleLabel = document.querySelector(".theme-toggle__label");
@@ -15,7 +21,9 @@ const navToggleLabel = document.querySelector(".nav-toggle__label");
 const themeColorMeta = document.querySelector("#theme-color-meta");
 const yearTarget = document.querySelector("#current-year");
 const sectionTargets = document.querySelectorAll("main section[id]");
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const prefersReducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)",
+);
 const hasFinePointer = window.matchMedia("(pointer: fine)");
 const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 const themeStorageKey = "impulsapyme-theme";
@@ -28,7 +36,8 @@ try {
   storedTheme = null;
 }
 
-const getThemeColor = () => getComputedStyle(root).getPropertyValue("--theme-color").trim();
+const getThemeColor = () =>
+  getComputedStyle(root).getPropertyValue("--theme-color").trim();
 
 const applyTheme = (theme, persist = true) => {
   root.dataset.theme = theme;
@@ -55,7 +64,21 @@ const applyTheme = (theme, persist = true) => {
   }
 };
 
-applyTheme(storedTheme || (prefersDarkScheme.matches ? "dark" : "light"), Boolean(storedTheme));
+applyTheme(
+  storedTheme || (prefersDarkScheme.matches ? "dark" : "light"),
+  Boolean(storedTheme),
+);
+
+navLinks.forEach((link) => {
+  const isCurrentPage = link.dataset.page === currentPage;
+  link.classList.toggle("is-active", isCurrentPage);
+
+  if (isCurrentPage) {
+    link.setAttribute("aria-current", "page");
+  } else {
+    link.removeAttribute("aria-current");
+  }
+});
 
 if (!storedTheme) {
   const handleSchemeChange = (event) => {
@@ -121,8 +144,10 @@ if ("IntersectionObserver" in window) {
   revealItems.forEach((item) => item.classList.add("is-visible"));
 }
 
-if ("IntersectionObserver" in window && navLinks.length > 0) {
-  const navMap = new Map(Array.from(navLinks, (link) => [link.getAttribute("href"), link]));
+if ("IntersectionObserver" in window && inPageNavLinks.length > 0) {
+  const navMap = new Map(
+    Array.from(inPageNavLinks, (link) => [link.getAttribute("href"), link]),
+  );
 
   const sectionObserver = new IntersectionObserver(
     (entries) => {
@@ -133,7 +158,11 @@ if ("IntersectionObserver" in window && navLinks.length > 0) {
 
         const currentLink = navMap.get(`#${entry.target.id}`);
 
-        navLinks.forEach((link) => link.classList.remove("is-active"));
+        inPageNavLinks.forEach((link) => {
+          if (!link.dataset.page) {
+            link.classList.remove("is-active");
+          }
+        });
 
         if (currentLink) {
           currentLink.classList.add("is-active");
@@ -172,6 +201,53 @@ copyButtons.forEach((button) => {
     }
   });
 });
+
+const attachWordRotation = (container) => {
+  const words = Array.from(container.querySelectorAll(".hero-word"));
+
+  if (words.length === 0) {
+    return;
+  }
+
+  const interval = Number(container.dataset.rotationInterval || 2400);
+  let activeIndex = Math.max(
+    0,
+    words.findIndex((word) => word.classList.contains("is-active")),
+  );
+
+  const syncWidth = () => {
+    const maxWidth = Math.ceil(
+      words.reduce((widest, word) => Math.max(widest, word.scrollWidth), 0),
+    );
+
+    if (maxWidth > 0) {
+      container.style.width = `${maxWidth}px`;
+    }
+  };
+
+  const setActiveWord = (index) => {
+    words.forEach((word, wordIndex) => {
+      word.classList.toggle("is-active", wordIndex === index);
+      word.setAttribute("aria-hidden", wordIndex === index ? "false" : "true");
+    });
+  };
+
+  syncWidth();
+  setActiveWord(activeIndex);
+  window.addEventListener("resize", syncWidth, { passive: true });
+  window.addEventListener("load", syncWidth, { once: true });
+
+  if (prefersReducedMotion.matches || words.length < 2) {
+    return;
+  }
+
+  window.setInterval(() => {
+    activeIndex = (activeIndex + 1) % words.length;
+    setActiveWord(activeIndex);
+  }, interval);
+};
+
+rotatingWordGroups.forEach((container) => attachWordRotation(container));
 
 const syncHeaderState = () => {
   if (!topbar) {
@@ -249,8 +325,10 @@ const attachSceneMotion = (element, options = {}) => {
     const autoAnimate = (time) => {
       if (!isTouchInteracting) {
         const seconds = time / 1000;
-        const rotateX = baseX + Math.sin(seconds * 0.95 + scenePhase) * (rangeX * 0.35);
-        const rotateY = baseY + Math.cos(seconds * 0.8 + scenePhase) * (rangeY * 0.45);
+        const rotateX =
+          baseX + Math.sin(seconds * 0.95 + scenePhase) * (rangeX * 0.35);
+        const rotateY =
+          baseY + Math.cos(seconds * 0.8 + scenePhase) * (rangeY * 0.45);
 
         setSceneTilt(element, rotateX, rotateY);
       }
@@ -329,16 +407,24 @@ const attachCardTilt = (element) => {
     const offsetY = (event.clientY - rect.top) / rect.height - 0.5;
     const rotateX = offsetY * -10;
     const rotateY = offsetX * 12;
+    const pointerX = `${((event.clientX - rect.left) / rect.width) * 100}%`;
+    const pointerY = `${((event.clientY - rect.top) / rect.height) * 100}%`;
 
     element.classList.add("is-tilting");
     element.style.setProperty("--card-rotate-x", `${rotateX}deg`);
     element.style.setProperty("--card-rotate-y", `${rotateY}deg`);
+    element.style.setProperty("--pointer-x", pointerX);
+    element.style.setProperty("--pointer-y", pointerY);
+    element.style.setProperty("--pointer-alpha", "1");
+    element.style.setProperty("--pointer-scale", "1");
   });
 
   element.addEventListener("mouseleave", () => {
     element.classList.remove("is-tilting");
     element.style.setProperty("--card-rotate-x", "0deg");
     element.style.setProperty("--card-rotate-y", "0deg");
+    element.style.setProperty("--pointer-alpha", "0");
+    element.style.setProperty("--pointer-scale", "0.68");
   });
 };
 
@@ -346,7 +432,9 @@ if (!prefersReducedMotion.matches && hasFinePointer.matches) {
   interactiveCards.forEach((card) => attachCardTilt(card));
 }
 
-tiltScenes.forEach((scene) => attachSceneMotion(scene, { baseX: -12, baseY: 18, rangeX: 14, rangeY: 18 }));
+tiltScenes.forEach((scene) =>
+  attachSceneMotion(scene, { baseX: -12, baseY: 18, rangeX: 14, rangeY: 18 }),
+);
 
 if (yearTarget) {
   yearTarget.textContent = String(new Date().getFullYear());
