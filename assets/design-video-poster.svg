@@ -1,0 +1,50 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="64" fill="#E8DACC"/>
+  <rect x="26" y="26" width="1548" height="848" rx="48" fill="url(#bg)"/>
+  <g opacity="0.78">
+    <circle cx="284" cy="240" r="180" fill="url(#warm)"/>
+    <circle cx="1310" cy="190" r="148" fill="url(#cool)"/>
+    <circle cx="1210" cy="736" r="212" fill="url(#deep)"/>
+  </g>
+  <rect x="172" y="138" width="1256" height="624" rx="42" fill="#F7EEE5" fill-opacity="0.88" stroke="#D2C2B1" stroke-width="4"/>
+  <rect x="208" y="174" width="1184" height="552" rx="28" fill="url(#screen)"/>
+  <g opacity="0.55">
+    <path d="M274 628C402 540.35 526 496.525 646 496.525C766 496.525 900 546.725 1048 647.125" stroke="#F5EEE6" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1 15"/>
+    <path d="M386 596C476.833 531.35 569.333 499.025 663.5 499.025C757.667 499.025 861.167 536.1 974 610.25" stroke="#F5EEE6" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1 15"/>
+  </g>
+  <rect x="268" y="244" width="260" height="80" rx="40" fill="#10213E"/>
+  <text x="398" y="294" fill="#FFF7EF" font-family="Space Grotesk, Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="6">VIDEO CENTRAL</text>
+  <text x="268" y="424" fill="#10213E" font-family="Fraunces, Georgia, serif" font-size="116" font-weight="700" letter-spacing="-3">Film</text>
+  <text x="268" y="518" fill="#7C664A" font-family="Space Grotesk, Arial, sans-serif" font-size="34" font-weight="500" letter-spacing="3.5">REEL / CASO / PRESENTACION</text>
+  <text x="268" y="590" fill="#5F6F8A" font-family="Space Grotesk, Arial, sans-serif" font-size="30" font-weight="500">Diseno visual para que la marca se vea</text>
+  <text x="268" y="632" fill="#5F6F8A" font-family="Space Grotesk, Arial, sans-serif" font-size="30" font-weight="500">tan potente como su propuesta.</text>
+  <circle cx="1186" cy="450" r="106" fill="#FFF7EF" fill-opacity="0.94"/>
+  <circle cx="1186" cy="450" r="130" stroke="#FFF7EF" stroke-opacity="0.4" stroke-width="2"/>
+  <path d="M1160 401.5L1244 450L1160 498.5V401.5Z" fill="#10213E"/>
+  <rect x="1134" y="222" width="198" height="54" rx="27" fill="#FF6B4A"/>
+  <text x="1233" y="256" text-anchor="middle" fill="#FFF7EF" font-family="Space Grotesk, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="3">HERO VIDEO</text>
+  <rect x="1046" y="648" width="284" height="52" rx="26" fill="#F0E2D1" stroke="#D2C2B1" stroke-width="2"/>
+  <text x="1188" y="680" text-anchor="middle" fill="#10213E" font-family="Space Grotesk, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="2.5">MOTION / BRAND / STORY</text>
+  <defs>
+    <linearGradient id="bg" x1="126" y1="112" x2="1472" y2="812" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7EEE5"/>
+      <stop offset="1" stop-color="#E0D1C1"/>
+    </linearGradient>
+    <radialGradient id="warm" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(284 240) rotate(90) scale(180)">
+      <stop stop-color="#F0B33F" stop-opacity="0.52"/>
+      <stop offset="1" stop-color="#F0B33F" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cool" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1310 190) rotate(90) scale(148)">
+      <stop stop-color="#56D8D4" stop-opacity="0.52"/>
+      <stop offset="1" stop-color="#56D8D4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="deep" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1210 736) rotate(90) scale(212)">
+      <stop stop-color="#10213E" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#10213E" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="screen" x1="312" y1="196" x2="1282" y2="742" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E9DDCF"/>
+      <stop offset="1" stop-color="#D9CABA"/>
+    </linearGradient>
+  </defs>
+</svg>

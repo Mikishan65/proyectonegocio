@@ -11,531 +11,114 @@
     <title>ImpulsaPyME | Soluciones digitales para PyMEs</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <link rel="stylesheet" href="styles.css" />
-    <script src="script.js" defer></script>
+    <script type="module" src="script.js"></script>
   </head>
   <body data-page="home">
     <div class="background-glow background-glow--left"></div>
     <div class="background-glow background-glow--right"></div>
+    <div class="home-route-loader" data-home-loader aria-hidden="true">
+      <span class="home-route-loader__bar"></span>
+    </div>
 
-    <div class="site-shell">
-      <header class="topbar">
-        <a class="brand" href="index.html" aria-label="Ir al inicio">
-          <span class="brand-mark" aria-hidden="true">
-            <img src="assets/brand-mark.svg" alt="" />
-          </span>
-          <span class="brand-copy">
-            <strong>Impulsa Pequeñas y Medianas Empresas</strong>
-            <small
-              >Soluciones digitales adaptadas para empresas de cualquier
-              rubro</small
-            >
-          </span>
-        </a>
+    <div class="site-shell site-shell--home">
+      <div data-site-topbar></div>
 
-        <div class="topbar-actions">
-          <nav class="site-nav" id="site-nav" aria-label="Principal">
-            <a href="index.html" data-page="home">Inicio</a>
-            <a href="marketing.html" data-page="marketing">Marketing</a>
-            <a href="software.html" data-page="software">Sistemas</a>
-            <a href="diseno.html" data-page="design">Diseño</a>
-            <a href="#contacto">Contacto</a>
-          </nav>
-
-          <button
-            class="theme-toggle"
-            type="button"
-            aria-label="Cambiar tema"
-            aria-pressed="false"
-          >
-            <span class="theme-toggle__track">
-              <span class="theme-toggle__thumb"></span>
-            </span>
-            <span class="theme-toggle__label">Modo oscuro</span>
-          </button>
-        </div>
-
-        <button
-          class="nav-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="site-nav"
-          aria-label="Abrir menú"
-        >
-          <span class="nav-toggle__icon" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-          <span class="nav-toggle__label">Menú</span>
-        </button>
-      </header>
-
-      <main>
-        <section class="hero section home-hero">
-          <div class="hero-copy hero-copy--wide reveal">
-            <p class="eyebrow">
-              Marketing, sistemas y diseño para empresas que necesitan crecer
-              con claridad
-            </p>
-            <h1
-              class="hero-dynamic-title"
-              aria-label="Tu empresa no necesita más ruido. Necesita más claridad, control y confianza."
-            >
-              Tu empresa no necesita más ruido.
-              <span class="hero-dynamic-break">
-                Necesita más
-                <span
-                  class="hero-word-stack"
-                  data-rotating-words
-                  data-rotation-interval="2400"
-                >
-                  <span class="hero-word is-active">claridad</span>
-                  <span class="hero-word">control</span>
-                  <span class="hero-word">confianza</span>
-                </span>
-              </span>
-            </h1>
-            <p class="lead">
-              Unimos estrategia, desarrollo y diseño para que tu negocio se vea
-              profesional, opere con más orden y deje de depender de decisiones
-              improvisadas.
-            </p>
-
-            <div class="hero-signal-row" aria-label="Áreas que coordinamos">
-              <span>Marketing</span>
-              <span>Sistemas</span>
-              <span>Diseño</span>
-            </div>
-
-            <div class="hero-actions">
-              <a class="button button-primary" href="#servicios"
-                >Ver servicios</a
-              >
-              <a class="button button-secondary" href="#contacto"
-                >Hablar con un agente</a
-              >
-            </div>
-
-            <ul class="hero-stats" aria-label="Ventajas clave">
-              <li class="reveal">
-                <strong>Visibilidad con dirección</strong>
-                <span
-                  >Contenido, campañas y presencia digital con un objetivo
-                  comercial claro.</span
-                >
-              </li>
-              <li class="reveal">
-                <strong>Operación más ordenada</strong>
-                <span
-                  >Sistemas y flujos pensados para bajar fricción y ganar
-                  control real.</span
-                >
-              </li>
-              <li class="reveal">
-                <strong>Marca más confiable</strong>
-                <span
-                  >Diseño y soporte visual para que la empresa se vea tan sólida
-                  como trabaja.</span
-                >
-              </li>
-            </ul>
-          </div>
-
-          <div class="hero-visual reveal">
-            <div
-              class="scene-shell"
-              data-tilt
-              data-tilt-base-x="-12"
-              data-tilt-base-y="18"
-              data-tilt-range-x="14"
-              data-tilt-range-y="18"
-            >
-              <div class="scene-stage">
-                <div class="scene-floor"></div>
-
-                <div class="scene-rig">
-                  <div
-                    class="scene-ring scene-ring--outer"
-                    aria-hidden="true"
-                  ></div>
-                  <div
-                    class="scene-ring scene-ring--inner"
-                    aria-hidden="true"
-                  ></div>
-
-                  <article class="scene-core">
-                    <p class="panel-label">ImpulsaPyME</p>
-                    <strong
-                      >Más claridad para vender. Más control para
-                      operar.</strong
-                    >
-                    <span
-                      >Combinamos marketing, sistemas y diseño según el momento
-                      real del negocio, sin inflar la propuesta.</span
-                    >
-                  </article>
-
-                  <div class="orbit orbit--one" aria-hidden="true">
-                    <article class="orbit-card">
-                      <span>Marketing</span>
-                      <strong
-                        >Posicionamiento, contenido y campañas con
-                        intención</strong
-                      >
-                    </article>
-                  </div>
-
-                  <div class="orbit orbit--two" aria-hidden="true">
-                    <article class="orbit-card">
-                      <span>Sistemas</span>
-                      <strong
-                        >Procesos, dashboards e inventarios bajo control</strong
-                      >
-                    </article>
-                  </div>
-
-                  <div class="orbit orbit--three" aria-hidden="true">
-                    <article class="orbit-card">
-                      <span>Diseño</span>
-                      <strong
-                        >Identidad y piezas que transmiten confianza</strong
-                      >
-                    </article>
-                  </div>
-
-                  <div class="scene-pill scene-pill--one">
-                    Santa Cruz · Bolivia
-                  </div>
-                  <div class="scene-pill scene-pill--two">
-                    Adaptado a cada rubro
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
+      <main class="home-lab-main">
         <section
-          class="proof-ticker reveal"
-          aria-label="Rubros donde adaptamos la propuesta"
+          class="home-lab-hero"
+          data-preview-root
+          data-preview-default-id="home"
+          data-preview-default-url=""
+          data-preview-default-label="Selecciona un área"
+          data-preview-default-status="Previsualización activa · Inicio"
         >
-          <div class="proof-ticker__viewport">
-            <div class="proof-ticker__track">
-              <span>Gastronomía</span>
-              <span>Salud</span>
-              <span>Retail</span>
-              <span>Industria</span>
-              <span>Servicios</span>
-              <span>Educación</span>
-              <span>Construcción</span>
-              <span>Distribución</span>
-              <span>Inmobiliaria</span>
-              <span>Gastronomía</span>
-              <span>Salud</span>
-              <span>Retail</span>
-              <span>Industria</span>
-              <span>Servicios</span>
-              <span>Educación</span>
-              <span>Construcción</span>
-              <span>Distribución</span>
-              <span>Inmobiliaria</span>
-            </div>
-          </div>
-        </section>
+          <div data-site-bubbles></div>
 
-        <section class="benefit-band home-band" aria-label="Resumen de áreas">
-          <article class="reveal">
-            <span>01</span>
-            <h2>
-              Marketing para ganar visibilidad, confianza y nuevas oportunidades
-              comerciales.
-            </h2>
-          </article>
-          <article class="reveal">
-            <span>02</span>
-            <h2>
-              Sistemas para automatizar tareas, ordenar datos y mejorar la
-              operación diaria.
-            </h2>
-          </article>
-          <article class="reveal">
-            <span>03</span>
-            <h2>
-              Diseño para que la marca se vea profesional, coherente y lista
-              para vender.
-            </h2>
-          </article>
-        </section>
-
-        <section class="section home-contrast" id="enfoque">
-          <div class="home-contrast__shell reveal">
-            <div class="home-contrast__copy">
-              <p class="eyebrow">Punto de partida</p>
-              <h2>Más clientes, menos improvisación.</h2>
-              <p>
-                Cuando la marca no comunica, la operación depende de parches y
-                cada acción digital va por su cuenta, crecer cuesta más de lo
-                necesario.
-              </p>
-              <p class="home-contrast__micro">
-                Lo resolvemos alineando mensaje, sistema y diseño desde el
-                inicio.
-              </p>
-            </div>
-
-            <div class="home-contrast__aside">
-              <div class="home-contrast__rail" aria-hidden="true">
-                <div class="home-contrast__rail-track">
-                  <span>CLARIDAD</span>
-                  <span>CONTROL</span>
-                  <span>CONFIANZA</span>
-                  <span>RESULTADO</span>
-                  <span>CLARIDAD</span>
-                  <span>CONTROL</span>
-                  <span>CONFIANZA</span>
-                  <span>RESULTADO</span>
+          <div class="home-preview-stage reveal">
+            <div class="home-preview-stage__screen">
+              <article
+                class="home-preview-panel home-preview-panel--home is-active"
+                data-preview-panel="home"
+                aria-hidden="false"
+              >
+                <div class="home-preview-homecover">
+                  <p class="panel-label">ImpulsaPyME</p>
+                  <strong
+                    >Marketing, sistemas y diseño desde una sola
+                    portada.</strong
+                  >
+                  <p>
+                    Pasa el ratón por una burbuja y la vista completa aparece
+                    aquí, sin marcos extra y ocupando casi toda la pantalla.
+                  </p>
                 </div>
-              </div>
+              </article>
 
-              <article class="home-contrast__summary">
-                <p class="panel-label">ImpulsaPyME</p>
-                <strong
-                  >Una sola propuesta para ordenar lo que hoy está
-                  suelto.</strong
-                >
-                <ul>
-                  <li>Definimos qué comunicar y cómo diferenciarte.</li>
-                  <li>
-                    Elegimos el sistema o flujo correcto para tu operación.
-                  </li>
-                  <li>
-                    Hacemos que la marca se vea tan sólida como el servicio.
-                  </li>
-                </ul>
+              <article
+                class="home-preview-panel"
+                data-preview-panel="marketing"
+                aria-hidden="true"
+                style="--preview-scale: 0.96; --preview-offset-y: -58px"
+              >
+                <div class="home-preview-panel__viewport">
+                  <iframe
+                    data-preview-src="marketing.html"
+                    title="Vista previa de Marketing"
+                    loading="lazy"
+                    tabindex="-1"
+                  ></iframe>
+                </div>
+              </article>
+
+              <article
+                class="home-preview-panel"
+                data-preview-panel="software"
+                aria-hidden="true"
+                style="--preview-scale: 0.95; --preview-offset-y: -82px"
+              >
+                <div class="home-preview-panel__viewport">
+                  <iframe
+                    data-preview-src="software.html"
+                    title="Vista previa de Sistemas"
+                    loading="lazy"
+                    tabindex="-1"
+                  ></iframe>
+                </div>
+              </article>
+
+              <article
+                class="home-preview-panel"
+                data-preview-panel="design"
+                aria-hidden="true"
+                style="--preview-scale: 0.92; --preview-offset-y: -34px"
+              >
+                <div class="home-preview-panel__viewport">
+                  <iframe
+                    data-preview-src="diseno.html"
+                    title="Vista previa de Diseño"
+                    loading="lazy"
+                    tabindex="-1"
+                  ></iframe>
+                </div>
               </article>
             </div>
 
-            <div class="home-contrast__grid">
-              <article class="impact-card">
-                <span>01 · Marketing</span>
-                <strong>Claridad comercial</strong>
-                <p>
-                  El mercado tiene que entender rápido qué haces, para quién es
-                  y por qué debería elegirte.
-                </p>
-              </article>
-              <article class="impact-card">
-                <span>02 · Sistemas</span>
-                <strong>Control operativo</strong>
-                <p>
-                  Los procesos correctos reducen errores, ordenan datos y te
-                  devuelven tiempo para decidir mejor.
-                </p>
-              </article>
-              <article class="impact-card">
-                <span>03 · Diseño</span>
-                <strong>Confianza visual</strong>
-                <p>
-                  La marca, las piezas y la experiencia deben verse tan serias
-                  como la empresa que representan.
-                </p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section class="home-loop" aria-hidden="true">
-          <div class="home-loop__track">
-            <span>Más claridad digital</span>
-            <span>Más control operativo</span>
-            <span>Más confianza visual</span>
-            <span>Menos improvisación</span>
-            <span>Más claridad digital</span>
-            <span>Más control operativo</span>
-            <span>Más confianza visual</span>
-            <span>Menos improvisación</span>
-          </div>
-        </section>
-
-        <section class="section home-services" id="servicios">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Áreas</p>
-            <h2>
-              Cada servicio ahora vive en su propia página para que sea más
-              fácil explorar y cotizar.
-            </h2>
-            <p>
-              Entra al área que más te interese y revisa el detalle completo de
-              la propuesta.
-            </p>
-          </div>
-
-          <div class="service-grid">
-            <article class="service-card reveal">
-              <p class="card-kicker">Marketing y redes</p>
-              <h3>
-                Estrategia, contenido y campañas para que tu marca deje de
-                publicar sin dirección.
-              </h3>
-              <p>
-                Gestionamos presencia digital con planificación, grabación,
-                edición y copy para atraer mejor atención y construir confianza
-                en redes.
+            <div class="home-preview-stage__controls">
+              <p class="home-preview-stage__status" data-preview-status>
+                Previsualización activa · Inicio
               </p>
-              <ul>
-                <li>Calendario mensual y estrategia</li>
-                <li>Grabación profesional y edición de reels</li>
-                <li>Beneficios, propuesta, plan, inversión y términos</li>
-              </ul>
-              <div class="card-actions">
-                <a class="button button-secondary" href="marketing.html"
-                  >Ver marketing</a
-                >
-              </div>
-            </article>
-
-            <article class="service-card reveal">
-              <p class="card-kicker">Sistemas</p>
-              <h3>
-                Software a medida para PyMEs que necesitan más control,
-                automatización y datos reales.
-              </h3>
-              <p>
-                Desarrollamos sistemas web, inventarios, dashboards y bases de
-                datos pensados para la operación real de cada empresa.
-              </p>
-              <ul>
-                <li>Sistemas administrativos y ventas</li>
-                <li>Inventarios, dashboards y apps</li>
-                <li>Beneficios incluidos, precio base y flujo de trabajo</li>
-              </ul>
-              <div class="card-actions">
-                <a class="button button-secondary" href="software.html"
-                  >Ver sistemas</a
-                >
-              </div>
-            </article>
-
-            <article class="service-card reveal">
-              <p class="card-kicker">Diseño gráfico</p>
-              <h3>
-                Piezas visuales, identidad y materiales comerciales para que tu
-                empresa se vea sólida.
-              </h3>
-              <p>
-                Creamos soporte visual adaptable a cualquier rubro para redes,
-                campañas, presentaciones y materiales que ayudan a vender mejor.
-              </p>
-              <ul>
-                <li>Identidad visual y lineamientos</li>
-                <li>Creatividades para redes y campañas</li>
-                <li>Entregables, proceso y soporte visual continuo</li>
-              </ul>
-              <div class="card-actions">
-                <a class="button button-secondary" href="diseno.html"
-                  >Ver diseño</a
-                >
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section class="section home-process" id="proceso">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Forma de trabajo</p>
-            <h2>
-              Trabajamos por etapas para adaptar la solución correcta a cada
-              empresa.
-            </h2>
-          </div>
-
-          <div class="process-grid process-grid--three">
-            <article class="process-step reveal">
-              <span>Fase 1</span>
-              <h3>Diagnóstico y enfoque</h3>
-              <p>
-                Revisamos tu rubro, objetivos, operación actual y prioridad
-                comercial antes de proponer.
-              </p>
-            </article>
-            <article class="process-step reveal">
-              <span>Fase 2</span>
-              <h3>Producción y desarrollo</h3>
-              <p>
-                Ejecutamos el área elegida con diseño, contenido o sistemas
-                alineados a tu necesidad real.
-              </p>
-            </article>
-            <article class="process-step reveal">
-              <span>Fase 3</span>
-              <h3>Implementación y seguimiento</h3>
-              <p>
-                Entregamos, activamos y acompañamos para que la solución se use
-                bien desde el inicio.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <section class="section contact-section home-contact" id="contacto">
-          <div class="contact-card reveal">
-            <div>
-              <p class="eyebrow">Contacto</p>
-              <h2>
-                Si ya sabes qué área necesitas, coordinamos la siguiente
-                conversación.
-              </h2>
-              <p>
-                Somos agentes ubicados en Santa Cruz, Bolivia, y trabajamos con
-                empresas de cualquier rubro adaptando soluciones en marketing,
-                sistemas y diseño.
-              </p>
-            </div>
-
-            <div class="contact-actions">
               <a
-                class="button button-primary"
-                href="mailto:julieth3357t@gmail.com?subject=Quiero%20cotizar%20soluciones%20digitales"
+                class="button button-primary home-preview-stage__link is-disabled"
+                href="#"
+                data-preview-link
+                aria-disabled="true"
               >
-                julieth3357t@gmail.com
+                <span data-preview-link-label>Selecciona un área</span>
               </a>
-              <a
-                class="button button-secondary"
-                href="https://wa.me/59175541660?text=Hola%2C%20quiero%20cotizar%20soluciones%20digitales%20para%20mi%20empresa"
-                target="_blank"
-                rel="noreferrer"
-              >
-                WhatsApp: 755 41 660
-              </a>
-            </div>
-
-            <div class="contact-meta">
-              <button
-                class="copy-chip"
-                type="button"
-                data-copy="julieth3357t@gmail.com"
-              >
-                Copiar correo
-              </button>
-              <button class="copy-chip" type="button" data-copy="75541660">
-                Copiar WhatsApp
-              </button>
-              <span class="microcopy"
-                >Agentes ubicados en Santa Cruz, Bolivia. Atención a empresas de
-                cualquier rubro con soluciones adaptadas.</span
-              >
             </div>
           </div>
         </section>
       </main>
-
-      <footer class="footer">
-        <p>ImpulsaPyME</p>
-        <p>
-          <span id="current-year"></span> · Portafolio multipágina listo para
-          GitHub Pages
-        </p>
-      </footer>
     </div>
   </body>
 </html>
