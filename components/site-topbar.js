@@ -10,7 +10,7 @@ export const renderSiteTopbar = (currentPage) => {
         </span>
         <span class="brand-copy">
           <strong>ImpulsaPyME</strong>
-          <small>Marketing, sistemas y diseño para empresas de cualquier rubro</small>
+          <small>Marketing, software y diseño para negocios que quieren crecer con más orden</small>
         </span>
       </a>
 

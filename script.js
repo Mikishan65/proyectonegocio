@@ -41,7 +41,11 @@ const copyButtons = document.querySelectorAll("[data-copy]");
 const tiltScenes = document.querySelectorAll("[data-tilt]");
 const rotatingWordGroups = document.querySelectorAll("[data-rotating-words]");
 const designVideoShells = document.querySelectorAll(".design-video-shell");
+const designHeadlineClusters = document.querySelectorAll(
+  ".design-hero__headline-cluster",
+);
 const previewRoots = document.querySelectorAll("[data-preview-root]");
+const homeBubbleNavItems = document.querySelectorAll(".home-bubble-nav__item");
 const interactiveCards = document.querySelectorAll(
   ".hero-stats li, .benefit-band article, .service-card, .software-card, .software-benefits, .software-price, .benefit-card, .proposal-card, .process-step, .price-card, .side-card, .note-card, .terms-card, .contact-card, .impact-card, .home-contrast__summary, .design-hero__metric, .design-video-shell, .home-lab-stat, .home-lab-list__item",
 );
@@ -54,6 +58,8 @@ const yearTarget = document.querySelector("#current-year");
 const boliviaTimeTargets = document.querySelectorAll("[data-bolivia-time]");
 const boliviaDateTargets = document.querySelectorAll("[data-bolivia-date]");
 const sectionTargets = document.querySelectorAll("main section[id]");
+const softwareIntro = document.querySelector("[data-software-intro]");
+const codeRainPanes = document.querySelectorAll("[data-code-rain-pane]");
 const prefersReducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)",
 );
@@ -67,6 +73,7 @@ let homeLoaderHideTimer = 0;
 let homeLoaderProgressTimer = 0;
 let homeLoaderToken = 0;
 let routeTransitionTimer = 0;
+let softwareIntroFrame = 0;
 
 try {
   storedTheme = window.localStorage.getItem(themeStorageKey);
@@ -118,6 +125,7 @@ const syncPreviewFrameState = (
   {
     theme = root.dataset.theme || "light",
     resetScroll = false,
+    previewActive = frame?.dataset.previewActive === "true",
   } = {},
 ) => {
   if (!frame) {
@@ -125,6 +133,7 @@ const syncPreviewFrameState = (
   }
 
   frame.dataset.previewExpanded = "false";
+  frame.dataset.previewActive = String(previewActive);
 
   try {
     const frameRoot = frame.contentDocument?.documentElement;
@@ -138,9 +147,11 @@ const syncPreviewFrameState = (
     frameRoot.dataset.previewEmbed = "true";
     frameRoot.dataset.previewExpanded = "false";
     frameRoot.dataset.embeddedFrame = "true";
+    frameRoot.dataset.previewActive = String(previewActive);
     frameBody.dataset.previewEmbed = "true";
     frameBody.dataset.previewExpanded = "false";
     frameBody.dataset.embeddedFrame = "true";
+    frameBody.dataset.previewActive = String(previewActive);
 
     const frameThemeMeta =
       frame.contentDocument?.querySelector("#theme-color-meta");
@@ -176,10 +187,15 @@ const bindPreviewFrameThemeSync = (frame) => {
 
   frame.dataset.themeSyncBound = "true";
   frame.addEventListener("load", () => {
+    const panel = frame.closest("[data-preview-panel]");
     frame.dataset.previewReady = "true";
+    if (panel) {
+      panel.dataset.previewState = "ready";
+    }
     syncPreviewFrameState(frame, {
       theme: root.dataset.theme || "light",
       resetScroll: true,
+      previewActive: frame.dataset.previewActive === "true",
     });
   });
 };
@@ -530,9 +546,16 @@ const loadPreviewFrame = (panel) => {
   }
 
   if (currentSrc || !previewSrc) {
+    if (panel && currentSrc) {
+      panel.dataset.previewState =
+        frame.dataset.previewReady === "true" ? "ready" : "loading";
+    }
     return;
   }
 
+  panel.dataset.previewState = "loading";
+  frame.dataset.previewReady = "false";
+  frame.setAttribute("loading", "eager");
   frame.setAttribute("src", previewSrc);
 };
 
@@ -567,6 +590,59 @@ const attachPreviewHub = (rootElement) => {
     panels.map((panel) => [panel.dataset.previewPanel, panel]),
   );
   let activeId = defaultId;
+  let previewSwitchTimer = 0;
+
+  panels.forEach((panel) => {
+    const frame = panel.querySelector("iframe");
+    panel.dataset.previewState = frame ? "idle" : "ready";
+
+    if (frame) {
+      frame.dataset.previewActive = "false";
+    }
+  });
+
+  const syncPanelFrameState = (panel, isActive) => {
+    const frame = panel?.querySelector("iframe");
+
+    if (!frame) {
+      return;
+    }
+
+    frame.dataset.previewActive = String(isActive);
+    syncPreviewFrameState(frame, {
+      theme: root.dataset.theme || "light",
+      previewActive: isActive,
+    });
+  };
+
+  const pulsePreviewScreen = () => {
+    if (prefersReducedMotion.matches) {
+      return;
+    }
+
+    window.clearTimeout(previewSwitchTimer);
+    rootElement.dataset.previewSwitching = "true";
+    previewSwitchTimer = window.setTimeout(() => {
+      delete rootElement.dataset.previewSwitching;
+    }, 520);
+  };
+
+  const schedulePreviewPreload = () => {
+    const preload = () => {
+      panels.forEach((panel) => {
+        if (panel.dataset.previewPanel !== defaultId) {
+          loadPreviewFrame(panel);
+        }
+      });
+    };
+
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(preload, { timeout: 1400 });
+      return;
+    }
+
+    window.setTimeout(preload, 260);
+  };
 
   const setPreviewLinkState = (trigger) => {
     const nextUrl = trigger?.dataset.previewUrl?.trim() || defaultUrl;
@@ -624,6 +700,7 @@ const attachPreviewHub = (rootElement) => {
     const nextTrigger = triggers.find(
       (trigger) => trigger.dataset.previewId === nextId,
     );
+    const shouldPulse = nextId !== activeId;
 
     if (!nextPanel) {
       return;
@@ -645,9 +722,14 @@ const attachPreviewHub = (rootElement) => {
       const isActive = panel === nextPanel;
       panel.classList.toggle("is-active", isActive);
       panel.setAttribute("aria-hidden", String(!isActive));
+      syncPanelFrameState(panel, isActive);
     });
 
     setPreviewLinkState(nextTrigger);
+
+    if (shouldPulse) {
+      pulsePreviewScreen();
+    }
   };
 
   triggers.forEach((trigger) => {
@@ -748,9 +830,132 @@ const attachPreviewHub = (rootElement) => {
   if (activeId) {
     setActivePanel(activeId);
   }
+
+  schedulePreviewPreload();
 };
 
 previewRoots.forEach((previewRoot) => attachPreviewHub(previewRoot));
+
+const codeRainAlphabet =
+  "01ABCDEFGHIJKLMNOPQRSTUVWXYZ[]{}<>/\\\\|+-_=*#@$%&?:;";
+
+const buildCodeRainString = (length) =>
+  Array.from({ length }, () => {
+    const randomIndex = Math.floor(Math.random() * codeRainAlphabet.length);
+    return codeRainAlphabet[randomIndex];
+  }).join("");
+
+const getCodeRainColumnCount = () => {
+  if (isEmbeddedFrame) {
+    return 6;
+  }
+
+  if (window.innerWidth <= 560) {
+    return 5;
+  }
+
+  if (window.innerWidth <= 900) {
+    return 7;
+  }
+
+  return 10;
+};
+
+const buildSoftwareCodeRain = () => {
+  if (codeRainPanes.length === 0) {
+    return;
+  }
+
+  const columnCount = getCodeRainColumnCount();
+
+  codeRainPanes.forEach((pane, paneIndex) => {
+    if (pane.dataset.columnCount === String(columnCount)) {
+      return;
+    }
+
+    pane.dataset.columnCount = String(columnCount);
+    pane.replaceChildren();
+
+    Array.from({ length: columnCount }).forEach((_, columnIndex) => {
+      const column = document.createElement("div");
+      const widthShare = 100 / columnCount;
+      const nextX = (columnIndex + 0.5) * widthShare;
+      const nextLength = 18 + Math.floor(Math.random() * 18);
+
+      column.className = "software-code-column";
+      column.textContent = buildCodeRainString(nextLength);
+      column.style.setProperty("--code-x", `${nextX}%`);
+      column.style.setProperty(
+        "--duration",
+        `${(10 + Math.random() * 8).toFixed(2)}s`,
+      );
+      column.style.setProperty(
+        "--delay",
+        `${(-Math.random() * 18).toFixed(2)}s`,
+      );
+      column.style.setProperty(
+        "--column-alpha",
+        `${(0.45 + Math.random() * 0.42).toFixed(2)}`,
+      );
+
+      if ((paneIndex + columnIndex) % 3 === 0) {
+        column.style.filter = "blur(0.35px)";
+      }
+
+      pane.append(column);
+    });
+  });
+};
+
+const syncSoftwareIntroState = () => {
+  if (!softwareIntro) {
+    return;
+  }
+
+  let progress = 0;
+
+  if (!isEmbeddedFrame) {
+    if (prefersReducedMotion.matches) {
+      progress = 1;
+    } else {
+      const totalScroll = Math.max(
+        softwareIntro.offsetHeight - window.innerHeight,
+        1,
+      );
+      const nextProgress = -softwareIntro.getBoundingClientRect().top / totalScroll;
+      progress = Math.max(0, Math.min(1, nextProgress));
+    }
+  }
+
+  softwareIntro.style.setProperty(
+    "--software-curtain-progress",
+    progress.toFixed(4),
+  );
+};
+
+const requestSoftwareIntroSync = () => {
+  if (softwareIntroFrame) {
+    return;
+  }
+
+  softwareIntroFrame = window.requestAnimationFrame(() => {
+    softwareIntroFrame = 0;
+    buildSoftwareCodeRain();
+    syncSoftwareIntroState();
+  });
+};
+
+if (softwareIntro || codeRainPanes.length > 0) {
+  requestSoftwareIntroSync();
+
+  window.addEventListener("resize", requestSoftwareIntroSync, { passive: true });
+
+  if (softwareIntro && !isEmbeddedFrame && !prefersReducedMotion.matches) {
+    window.addEventListener("scroll", requestSoftwareIntroSync, {
+      passive: true,
+    });
+  }
+}
 
 const attachHomeCursorGlow = () => {
   if (
@@ -877,9 +1082,93 @@ window.addEventListener("pageshow", () => {
     delete previewRoot.dataset.routingTo;
   });
   stopHomeLoader();
+  requestSoftwareIntroSync();
   syncHeaderState();
 });
 syncHeaderState();
+
+const attachDesignHeadlineOrbitBoost = (cluster) => {
+  if (prefersReducedMotion.matches) {
+    return;
+  }
+
+  const orbiters = Array.from(cluster.querySelectorAll(".design-tool-orbiter"));
+
+  if (orbiters.length === 0) {
+    return;
+  }
+
+  const baseDurations = orbiters.map((orbiter) => {
+    const orbitDuration = Number.parseFloat(
+      getComputedStyle(orbiter).getPropertyValue("--orbit-duration"),
+    );
+
+    return Number.isFinite(orbitDuration) ? orbitDuration : 18;
+  });
+
+  let lastOrbitScrollY = window.scrollY;
+  let currentBoost = 1;
+  let targetBoost = 1;
+  let orbitBoostFrame = 0;
+  let orbitBoostResetTimer = 0;
+
+  const applyOrbitBoost = () => {
+    orbiters.forEach((orbiter, index) => {
+      const nextDuration = baseDurations[index] / currentBoost;
+      orbiter.style.animationDuration = `${nextDuration.toFixed(3)}s`;
+    });
+  };
+
+  const tickOrbitBoost = () => {
+    currentBoost += (targetBoost - currentBoost) * 0.1;
+    applyOrbitBoost();
+
+    if (
+      Math.abs(targetBoost - currentBoost) > 0.02 ||
+      Math.abs(currentBoost - 1) > 0.02
+    ) {
+      orbitBoostFrame = window.requestAnimationFrame(tickOrbitBoost);
+      return;
+    }
+
+    currentBoost = 1;
+    applyOrbitBoost();
+    orbitBoostFrame = 0;
+  };
+
+  const requestOrbitBoostTick = () => {
+    if (orbitBoostFrame) {
+      return;
+    }
+
+    orbitBoostFrame = window.requestAnimationFrame(tickOrbitBoost);
+  };
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      const currentOrbitScrollY = window.scrollY;
+      const scrollDelta = Math.abs(currentOrbitScrollY - lastOrbitScrollY);
+      lastOrbitScrollY = currentOrbitScrollY;
+
+      if (scrollDelta <= 0) {
+        return;
+      }
+
+      targetBoost = Math.min(1.85, 1 + scrollDelta / 120);
+      requestOrbitBoostTick();
+
+      window.clearTimeout(orbitBoostResetTimer);
+      orbitBoostResetTimer = window.setTimeout(() => {
+        targetBoost = 1;
+        requestOrbitBoostTick();
+      }, 180);
+    },
+    { passive: true },
+  );
+};
+
+designHeadlineClusters.forEach((cluster) => attachDesignHeadlineOrbitBoost(cluster));
 
 const setSceneTilt = (element, rotateX, rotateY) => {
   element.style.setProperty("--tilt-x", `${rotateX}deg`);
@@ -1036,8 +1325,40 @@ const attachCardTilt = (element) => {
   });
 };
 
+const attachHomeBubbleMagnet = (element) => {
+  const resetBubble = () => {
+    element.style.setProperty("--bubble-pointer-x", "50%");
+    element.style.setProperty("--bubble-pointer-y", "50%");
+    element.style.setProperty("--bubble-shift-x", "0px");
+    element.style.setProperty("--bubble-shift-y", "0px");
+    element.style.setProperty("--bubble-scale", "1");
+  };
+
+  element.addEventListener("mousemove", (event) => {
+    const rect = element.getBoundingClientRect();
+    const offsetX = (event.clientX - rect.left) / rect.width - 0.5;
+    const offsetY = (event.clientY - rect.top) / rect.height - 0.5;
+
+    element.style.setProperty(
+      "--bubble-pointer-x",
+      `${((event.clientX - rect.left) / rect.width) * 100}%`,
+    );
+    element.style.setProperty(
+      "--bubble-pointer-y",
+      `${((event.clientY - rect.top) / rect.height) * 100}%`,
+    );
+    element.style.setProperty("--bubble-shift-x", `${offsetX * -7}px`);
+    element.style.setProperty("--bubble-shift-y", `${offsetY * -4}px`);
+    element.style.setProperty("--bubble-scale", "1.03");
+  });
+
+  element.addEventListener("mouseleave", resetBubble);
+  element.addEventListener("blur", resetBubble);
+};
+
 if (!isEmbeddedFrame && !prefersReducedMotion.matches && hasFinePointer.matches) {
   interactiveCards.forEach((card) => attachCardTilt(card));
+  homeBubbleNavItems.forEach((item) => attachHomeBubbleMagnet(item));
 }
 
 if (!isEmbeddedFrame) {
