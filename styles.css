@@ -1258,7 +1258,7 @@ body[data-preview-embed="true"]:not([data-preview-expanded="true"])
   .software-intro__details,
 body[data-embedded-frame="true"]:not([data-preview-expanded="true"])
   .software-intro__details {
-  top: 50%;
+  top: 41.5%;
   bottom: auto;
   display: grid;
   width: min(calc(100% - 1.9rem), 35rem);
@@ -1275,7 +1275,7 @@ body[data-embedded-frame="true"]:not([data-preview-expanded="true"])
     color-mix(in srgb, var(--software-stage-bg) 58%, transparent);
   box-shadow: 0 22px 54px color-mix(in srgb, var(--software-stage-title) 10%, transparent);
   backdrop-filter: blur(18px);
-  transform: translate(-50%, -53%);
+  transform: translate(-50%, -48%);
   opacity: 1;
 }
 
