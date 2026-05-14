@@ -1,5 +1,6 @@
 import { renderSiteTopbar } from "./components/site-topbar.js";
 import { renderSiteBubbles } from "./components/site-bubbles.js";
+import { renderSiteLoader } from "./components/site-loader.js";
 
 const root = document.documentElement;
 const currentPage = document.body.dataset.page || "home";
@@ -22,6 +23,55 @@ document.querySelectorAll("[data-site-bubbles]").forEach((mount) => {
 
   mount.outerHTML = renderSiteBubbles(currentPage);
 });
+
+if (!isEmbeddedFrame) {
+  const loaderMount = document.createElement("div");
+  loaderMount.innerHTML = renderSiteLoader();
+  document.body.prepend(loaderMount.firstElementChild);
+
+  const transitionOverlay = document.createElement("div");
+  transitionOverlay.className = "page-transition-overlay";
+  transitionOverlay.innerHTML = `
+    <div class="page-transition-overlay__panel"></div>
+    <div class="page-transition-overlay__panel"></div>
+    <div class="page-transition-overlay__panel"></div>
+    <div class="page-transition-overlay__panel"></div>
+    <div class="page-transition-overlay__panel"></div>
+  `;
+  document.body.prepend(transitionOverlay);
+
+  window.addEventListener("load", () => {
+    const loader = document.querySelector(".site-loader");
+    if (loader) {
+      setTimeout(() => {
+        loader.classList.add("is-hidden");
+      }, 1000);
+    }
+  });
+
+  // Global navigation transition logic
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a");
+    if (!link) return;
+
+    const href = link.getAttribute("href");
+    if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:") || link.target === "_blank") return;
+
+    // Only internal links
+    const url = new URL(href, window.location.origin);
+    if (url.origin !== window.location.origin) return;
+
+    event.preventDefault();
+
+    if (document.body.classList.contains("is-routing")) return;
+
+    document.body.classList.add("is-routing");
+
+    setTimeout(() => {
+      window.location.assign(href);
+    }, prefersReducedMotion.matches ? 50 : 750);
+  });
+}
 
 if (isEmbeddedFrame) {
   root.dataset.embeddedFrame = "true";
@@ -591,6 +641,7 @@ const attachPreviewHub = (rootElement) => {
   );
   let activeId = defaultId;
   let previewSwitchTimer = 0;
+  let previewLoadTimeout = 0;
 
   panels.forEach((panel) => {
     const frame = panel.querySelector("iframe");
@@ -692,7 +743,7 @@ const attachPreviewHub = (rootElement) => {
 
     window.setTimeout(() => {
       window.location.assign(nextUrl);
-    }, prefersReducedMotion.matches ? 120 : 240);
+    }, prefersReducedMotion.matches ? 120 : 750);
   };
 
   const setActivePanel = (nextId) => {
@@ -741,7 +792,16 @@ const attachPreviewHub = (rootElement) => {
     }
 
     const activate = () => {
-      setActivePanel(previewId);
+      window.clearTimeout(previewLoadTimeout);
+      if (previewId === activeId) return;
+
+      if (previewId === defaultId) {
+        setActivePanel(defaultId);
+      } else {
+        previewLoadTimeout = window.setTimeout(() => {
+          setActivePanel(previewId);
+        }, 150);
+      }
     };
 
     trigger.addEventListener("pointerdown", () => {
@@ -831,7 +891,8 @@ const attachPreviewHub = (rootElement) => {
     setActivePanel(activeId);
   }
 
-  schedulePreviewPreload();
+  // Preload disabled to optimize performance
+  // schedulePreviewPreload();
 };
 
 previewRoots.forEach((previewRoot) => attachPreviewHub(previewRoot));
@@ -1356,9 +1417,40 @@ const attachHomeBubbleMagnet = (element) => {
   element.addEventListener("blur", resetBubble);
 };
 
+const attachMagneticEffect = (element) => {
+  if (!hasFinePointer.matches || prefersReducedMotion.matches) return;
+
+  const resetElement = () => {
+    element.style.transform = "translate3d(0, 0, 0)";
+  };
+
+  element.addEventListener("mousemove", (event) => {
+    const rect = element.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const deltaX = event.clientX - centerX;
+    const deltaY = event.clientY - centerY;
+
+    // Magnet intensity
+    const strength = element.dataset.magnetStrength || 0.25;
+    const moveX = deltaX * strength;
+    const moveY = deltaY * strength;
+
+    element.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+  });
+
+  element.addEventListener("mouseleave", resetElement);
+};
+
 if (!isEmbeddedFrame && !prefersReducedMotion.matches && hasFinePointer.matches) {
   interactiveCards.forEach((card) => attachCardTilt(card));
   homeBubbleNavItems.forEach((item) => attachHomeBubbleMagnet(item));
+
+  // Apply magnetic effect to buttons and specific interactive elements
+  document.querySelectorAll(".button, .brand, .theme-toggle, .copy-chip, .brand-mark").forEach(el => {
+    attachMagneticEffect(el);
+  });
 }
 
 if (!isEmbeddedFrame) {
