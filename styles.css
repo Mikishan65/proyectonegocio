@@ -344,7 +344,14 @@ body[data-embedded-frame="true"] .background-glow {
 body[data-embedded-frame="true"] .reveal {
   opacity: 1 !important;
   translate: 0 0 !important;
+  scale: 1 !important;
+  rotate: 0deg !important;
+  filter: none !important;
   transition: none !important;
+}
+
+body[data-embedded-frame="true"]:not([data-preview-active="true"]) .card-variant::after {
+  animation-play-state: paused;
 }
 
 body[data-embedded-frame="true"]:not([data-preview-active="true"]) .scene-ring,
@@ -888,6 +895,38 @@ h3 {
   max-width: 58ch;
 }
 
+body[data-page="marketing"] {
+  --page-section-accent: #ff7d5a;
+  --page-section-accent-alt: #f0b33f;
+  --page-section-accent-fade: rgba(255, 125, 90, 0.18);
+  --page-section-accent-fade-strong: rgba(240, 179, 63, 0.2);
+  --page-section-shadow: rgba(216, 76, 48, 0.22);
+}
+
+:root[data-theme="dark"] body[data-page="marketing"] {
+  --page-section-accent: #ffab8d;
+  --page-section-accent-alt: #ffd57a;
+  --page-section-accent-fade: rgba(255, 171, 141, 0.24);
+  --page-section-accent-fade-strong: rgba(255, 213, 122, 0.24);
+  --page-section-shadow: rgba(0, 0, 0, 0.38);
+}
+
+body[data-page="design"] {
+  --page-section-accent: #ff8a6d;
+  --page-section-accent-alt: #f0b33f;
+  --page-section-accent-fade: rgba(255, 138, 109, 0.18);
+  --page-section-accent-fade-strong: rgba(240, 179, 63, 0.2);
+  --page-section-shadow: rgba(170, 84, 52, 0.22);
+}
+
+:root[data-theme="dark"] body[data-page="design"] {
+  --page-section-accent: #ffb48f;
+  --page-section-accent-alt: #ffd982;
+  --page-section-accent-fade: rgba(255, 180, 143, 0.24);
+  --page-section-accent-fade-strong: rgba(255, 217, 130, 0.24);
+  --page-section-shadow: rgba(0, 0, 0, 0.38);
+}
+
 body[data-page="software"] {
   --software-stage-bg: #e9dfd1;
   --software-stage-text: #10213e;
@@ -961,6 +1000,12 @@ body[data-page="software"] {
   --software-hint-border: rgba(16, 33, 62, 0.1);
   --software-hint-bg: rgba(255, 255, 255, 0.28);
   --software-hint-color: rgba(16, 33, 62, 0.64);
+  --page-section-accent: #0f8b8d;
+  --page-section-accent-alt: #5ed8d2;
+  --page-section-rgb-hot: #ff5f64;
+  --page-section-accent-fade: rgba(15, 139, 141, 0.18);
+  --page-section-accent-fade-strong: rgba(94, 216, 210, 0.18);
+  --page-section-shadow: rgba(8, 73, 77, 0.2);
 }
 
 :root[data-theme="dark"] body[data-page="software"] {
@@ -1036,6 +1081,12 @@ body[data-page="software"] {
   --software-hint-border: rgba(121, 255, 196, 0.12);
   --software-hint-bg: rgba(239, 255, 246, 0.05);
   --software-hint-color: rgba(239, 255, 246, 0.68);
+  --page-section-accent: #63ffbe;
+  --page-section-accent-alt: #88f7ff;
+  --page-section-rgb-hot: #ff4d7a;
+  --page-section-accent-fade: rgba(99, 255, 190, 0.24);
+  --page-section-accent-fade-strong: rgba(136, 247, 255, 0.22);
+  --page-section-shadow: rgba(0, 0, 0, 0.42);
 }
 
 .software-intro {
@@ -3466,6 +3517,2072 @@ body[data-embedded-frame="true"]:not([data-preview-expanded="true"])
   --reveal-y: 0px;
   --reveal-scale: 1;
   transform: translateY(var(--reveal-y)) scale(var(--reveal-scale));
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .reveal {
+  --reveal-y: 34px;
+  --reveal-scale: 0.94;
+  --reveal-tilt: 0.8deg;
+  --reveal-blur: 10px;
+  scale: var(--reveal-scale);
+  rotate: var(--reveal-tilt);
+  filter: blur(var(--reveal-blur));
+  transition:
+    opacity 0.78s cubic-bezier(0.2, 0.7, 0.18, 1),
+    translate 0.78s cubic-bezier(0.2, 0.7, 0.18, 1),
+    scale 0.78s cubic-bezier(0.2, 0.7, 0.18, 1),
+    rotate 0.78s cubic-bezier(0.2, 0.7, 0.18, 1),
+    filter 0.78s ease;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .reveal.is-visible {
+  --reveal-scale: 1;
+  --reveal-tilt: 0deg;
+  --reveal-blur: 0px;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .section-heading {
+  position: relative;
+  isolation: isolate;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .section-heading::before {
+  position: absolute;
+  left: -1.1rem;
+  bottom: -0.6rem;
+  width: min(12rem, 36vw);
+  height: 5.2rem;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle,
+    var(--page-section-accent-fade),
+    transparent 72%
+  );
+  content: "";
+  filter: blur(18px);
+  opacity: 0.74;
+  pointer-events: none;
+  transform: translateY(14px) scale(0.86);
+  transition:
+    opacity 0.55s ease,
+    transform 0.7s ease;
+  z-index: -1;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .section-heading.reveal.is-visible::before {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .section-heading
+  .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: fit-content;
+  padding: 0.48rem 0.82rem;
+  border: 1px solid color-mix(in srgb, var(--page-section-accent) 28%, var(--line));
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--page-section-accent) 14%, transparent),
+      color-mix(in srgb, var(--surface) 96%, transparent)
+    ),
+    var(--surface);
+  box-shadow: 0 14px 28px color-mix(in srgb, var(--page-section-shadow) 18%, transparent);
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .section-heading
+  .eyebrow::before {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    var(--page-section-accent),
+    var(--page-section-accent-alt)
+  );
+  box-shadow: 0 0 18px color-mix(in srgb, var(--page-section-accent) 52%, transparent);
+  content: "";
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .section-heading
+  h2 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 1rem;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .section-heading
+  h2::after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: min(9rem, 34%);
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--page-section-accent),
+    var(--page-section-accent-alt)
+  );
+  box-shadow: 0 0 22px color-mix(in srgb, var(--page-section-accent) 26%, transparent);
+  content: "";
+  opacity: 0;
+  transform: scaleX(0.32);
+  transform-origin: left center;
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .section-heading.reveal.is-visible
+  h2::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant {
+  --card-orbit-speed: 8.5s;
+  --card-orbit-direction: normal;
+  --card-scan-speed: 7.8s;
+  --card-scan-direction: normal;
+  --card-pulse-speed: 6.8s;
+  --card-pulse-scale: 0.92;
+  --card-prism-speed: 9.4s;
+  --card-prism-direction: alternate;
+  --card-prism-rotate: -8deg;
+  --card-mesh-speed: 13s;
+  --card-mesh-size: 18px;
+  isolation: isolate;
+  border-color: color-mix(in srgb, var(--page-section-accent) 16%, var(--line));
+  background:
+    linear-gradient(
+      152deg,
+      color-mix(in srgb, var(--page-section-accent) 12%, transparent),
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      var(--page-section-accent-fade-strong),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 98%, transparent),
+      color-mix(in srgb, var(--surface-strong) 86%, transparent)
+    ),
+    var(--surface);
+  box-shadow:
+    0 22px 58px color-mix(in srgb, var(--page-section-shadow) 30%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 14%, transparent);
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant
+  > * {
+  position: relative;
+  z-index: 1;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant.card-variant--orbit::after {
+  position: absolute;
+  inset: -1px;
+  padding: 1px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    color-mix(in srgb, var(--page-section-accent) 92%, transparent) 0deg,
+    color-mix(in srgb, var(--page-section-accent-alt) 94%, transparent) 78deg,
+    transparent 126deg 214deg,
+    color-mix(in srgb, var(--page-section-accent-alt) 90%, transparent) 282deg,
+    color-mix(in srgb, var(--page-section-accent) 92%, transparent) 360deg
+  );
+  content: "";
+  opacity: 0.68;
+  pointer-events: none;
+  transform: rotate(0deg);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: page-card-orbit var(--card-orbit-speed) linear infinite;
+  animation-direction: var(--card-orbit-direction);
+  z-index: 0;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant:hover,
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant.is-tilting {
+  border-color: color-mix(
+    in srgb,
+    var(--page-section-accent-alt) 42%,
+    var(--page-section-accent)
+  );
+  box-shadow:
+    0 32px 84px color-mix(in srgb, var(--page-section-shadow) 38%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 16%, transparent);
+  --card-raise: -10px;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant.card-variant--orbit:hover::after,
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant.card-variant--orbit.is-tilting::after {
+  opacity: 0.96;
+  animation-duration: 4.3s;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant.card-variant--scan::after {
+  position: absolute;
+  inset: -32% -18%;
+  background:
+    linear-gradient(
+      110deg,
+      transparent 18%,
+      color-mix(in srgb, var(--page-section-accent) 24%, transparent) 46%,
+      color-mix(in srgb, var(--page-section-accent-alt) 18%, transparent) 54%,
+      transparent 78%
+    ),
+    radial-gradient(
+      circle at 82% 18%,
+      color-mix(in srgb, var(--page-section-accent-alt) 22%, transparent),
+      transparent 34%
+    );
+  content: "";
+  opacity: 0.42;
+  pointer-events: none;
+  transform: translateX(-74%) skewX(-18deg);
+  animation: page-card-scan var(--card-scan-speed) ease-in-out infinite;
+  animation-direction: var(--card-scan-direction);
+  z-index: 0;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant.card-variant--scan:hover::after,
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant.card-variant--scan.is-tilting::after {
+  opacity: 0.72;
+  animation-duration: 3.8s;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant.card-variant--pulse::after {
+  position: absolute;
+  inset: -22%;
+  background:
+    radial-gradient(
+      circle at 22% 28%,
+      color-mix(in srgb, var(--page-section-accent) 24%, transparent),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 78% 76%,
+      color-mix(in srgb, var(--page-section-accent-alt) 26%, transparent),
+      transparent 30%
+    );
+  content: "";
+  opacity: 0.78;
+  pointer-events: none;
+  filter: blur(8px);
+  transform: scale(var(--card-pulse-scale));
+  animation: page-card-pulse var(--card-pulse-speed) ease-in-out infinite;
+  z-index: 0;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant.card-variant--pulse:hover::after,
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant.card-variant--pulse.is-tilting::after {
+  opacity: 1;
+  animation-duration: 4.6s;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant.card-variant--prism::after {
+  position: absolute;
+  inset: -18% -14%;
+  background:
+    linear-gradient(
+      132deg,
+      transparent 8%,
+      color-mix(in srgb, var(--page-section-accent) 18%, transparent) 36%,
+      color-mix(in srgb, var(--page-section-accent-alt) 24%, transparent) 52%,
+      transparent 76%
+    ),
+    radial-gradient(
+      circle at 76% 20%,
+      color-mix(in srgb, var(--page-section-accent-alt) 20%, transparent),
+      transparent 34%
+    );
+  content: "";
+  opacity: 0.62;
+  pointer-events: none;
+  filter: blur(14px);
+  transform: rotate(var(--card-prism-rotate)) scale(0.96);
+  animation: page-card-prism var(--card-prism-speed) ease-in-out infinite;
+  animation-direction: var(--card-prism-direction);
+  z-index: 0;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant.card-variant--prism:hover::after,
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant.card-variant--prism.is-tilting::after {
+  opacity: 0.88;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant.card-variant--mesh::after {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0,
+      transparent calc(100% - 1px),
+      color-mix(in srgb, var(--page-section-accent) 16%, transparent) calc(100% - 1px)
+    ),
+    linear-gradient(
+      180deg,
+      transparent 0,
+      transparent calc(100% - 1px),
+      color-mix(in srgb, var(--page-section-accent-alt) 14%, transparent) calc(100% - 1px)
+    ),
+    radial-gradient(
+      circle at 16% 18%,
+      color-mix(in srgb, var(--page-section-accent) 14%, transparent),
+      transparent 42%
+    );
+  background-size: var(--card-mesh-size) var(--card-mesh-size),
+    var(--card-mesh-size) var(--card-mesh-size), 100% 100%;
+  background-position: 0 0, 0 0, 0 0;
+  content: "";
+  opacity: 0.3;
+  pointer-events: none;
+  animation: page-card-mesh var(--card-mesh-speed) linear infinite;
+  z-index: 0;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant.card-variant--mesh:hover::after,
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .card-variant.card-variant--mesh.is-tilting::after {
+  opacity: 0.48;
+  animation-duration: 8s;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(
+    .benefit-band,
+    .benefits-grid,
+    .service-grid,
+    .software-grid,
+    .software-summary,
+    .process-grid,
+    .pricing-grid,
+    .note-grid,
+    .terms-grid,
+    .proposal-stack
+  )
+  > *:nth-child(3n + 1).card-variant {
+  --card-orbit-speed: 9.8s;
+  --card-scan-speed: 8.8s;
+  --card-pulse-speed: 7.4s;
+  --card-prism-speed: 11.4s;
+  --card-prism-rotate: -11deg;
+  --card-mesh-speed: 15s;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(
+    .benefit-band,
+    .benefits-grid,
+    .service-grid,
+    .software-grid,
+    .software-summary,
+    .process-grid,
+    .pricing-grid,
+    .note-grid,
+    .terms-grid,
+    .proposal-stack
+  )
+  > *:nth-child(3n + 2).card-variant {
+  --card-orbit-direction: reverse;
+  --card-scan-direction: reverse;
+  --card-pulse-speed: 6.1s;
+  --card-prism-speed: 8.6s;
+  --card-prism-rotate: 7deg;
+  --card-mesh-size: 20px;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(
+    .benefit-band,
+    .benefits-grid,
+    .service-grid,
+    .software-grid,
+    .software-summary,
+    .process-grid,
+    .pricing-grid,
+    .note-grid,
+    .terms-grid,
+    .proposal-stack
+  )
+  > *:nth-child(3n).card-variant {
+  --card-orbit-speed: 7.2s;
+  --card-scan-speed: 6.8s;
+  --card-pulse-scale: 1;
+  --card-prism-direction: alternate-reverse;
+  --card-prism-rotate: -2deg;
+  --card-mesh-speed: 10.8s;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .benefit-band
+  .card-variant {
+  padding: 1.55rem;
+  background:
+    radial-gradient(
+      circle at 14% 22%,
+      color-mix(in srgb, var(--page-section-accent) 20%, transparent),
+      transparent 34%
+    ),
+    linear-gradient(
+      150deg,
+      color-mix(in srgb, var(--page-section-accent-alt) 10%, transparent),
+      transparent 48%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 98%, transparent),
+      color-mix(in srgb, var(--surface-strong) 84%, transparent)
+    ),
+    var(--surface);
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .benefit-band
+  .card-variant
+  h2 {
+  max-width: 13ch;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .benefit-band
+  .card-variant
+  span {
+  transform: rotate(-9deg);
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .benefit-band
+  .card-variant:hover
+  span,
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .benefit-band
+  .card-variant.is-tilting
+  span {
+  transform: rotate(-5deg) translateY(-2px) scale(1.07);
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(.service-card, .benefit-card).card-variant--prism {
+  background:
+    linear-gradient(
+      132deg,
+      color-mix(in srgb, var(--page-section-accent) 14%, transparent) 0 18%,
+      transparent 18% 54%,
+      color-mix(in srgb, var(--page-section-accent-alt) 12%, transparent) 54% 68%,
+      transparent 68%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 98%, transparent),
+      color-mix(in srgb, var(--surface-strong) 86%, transparent)
+    ),
+    var(--surface);
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .service-grid
+  > :nth-child(odd).card-variant--prism,
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .benefits-grid
+  > :nth-child(even).card-variant--prism {
+  background:
+    linear-gradient(
+      -132deg,
+      color-mix(in srgb, var(--page-section-accent-alt) 14%, transparent) 0 16%,
+      transparent 16% 52%,
+      color-mix(in srgb, var(--page-section-accent) 11%, transparent) 52% 68%,
+      transparent 68%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 98%, transparent),
+      color-mix(in srgb, var(--surface-strong) 86%, transparent)
+    ),
+    var(--surface);
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(.software-card, .terms-card).card-variant--scan {
+  background:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 15px,
+      color-mix(in srgb, var(--page-section-accent) 7%, transparent) 15px 16px
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--page-section-accent) 10%, transparent),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 98%, transparent),
+      color-mix(in srgb, var(--surface-strong) 84%, transparent)
+    ),
+    var(--surface);
+  box-shadow:
+    0 22px 58px color-mix(in srgb, var(--page-section-shadow) 26%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, var(--page-section-accent) 14%, transparent),
+    inset 0 0 40px color-mix(in srgb, var(--page-section-accent) 6%, transparent);
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .software-card.card-variant--scan
+  .card-kicker,
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .terms-card.card-variant--scan
+  strong {
+  text-shadow: 0 0 16px color-mix(in srgb, var(--page-section-accent) 14%, transparent);
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(.process-step, .benefit-card).card-variant--pulse,
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .note-card.card-variant--pulse {
+  background:
+    radial-gradient(
+      circle at 18% 18%,
+      color-mix(in srgb, var(--page-section-accent) 18%, transparent),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 82% 84%,
+      color-mix(in srgb, var(--page-section-accent-alt) 18%, transparent),
+      transparent 32%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 98%, transparent),
+      color-mix(in srgb, var(--surface-strong) 86%, transparent)
+    ),
+    var(--surface);
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .process-step.card-variant {
+  display: grid;
+  align-content: start;
+  gap: 0.72rem;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .process-step.card-variant
+  span {
+  margin-bottom: 0;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(.proposal-card, .note-card, .software-benefits, .side-card).card-variant--mesh {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--page-section-accent) 8%, transparent),
+      transparent 26%
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--page-section-accent) 16%, transparent) 0 4px,
+      transparent 4px
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 98%, transparent),
+      color-mix(in srgb, var(--surface-strong) 84%, transparent)
+    ),
+    var(--surface);
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(.proposal-card, .side-card).card-variant--mesh {
+  box-shadow:
+    0 22px 58px color-mix(in srgb, var(--page-section-shadow) 24%, transparent),
+    inset 4px 0 0 color-mix(in srgb, var(--page-section-accent) 18%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 14%, transparent);
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(.price-card, .software-price).card-variant--orbit {
+  background:
+    radial-gradient(
+      circle at 50% -8%,
+      color-mix(in srgb, var(--page-section-accent) 20%, transparent),
+      transparent 42%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--page-section-accent-alt) 8%, transparent),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 99%, transparent),
+      color-mix(in srgb, var(--surface-strong) 86%, transparent)
+    ),
+    var(--surface);
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(.price-card, .software-price).card-variant--orbit
+  :is(.price, h3) {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--page-section-accent) 78%, var(--ink)),
+    color-mix(in srgb, var(--page-section-accent-alt) 66%, var(--ink))
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: none;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .contact-card.card-variant--orbit {
+  background:
+    radial-gradient(
+      circle at 108% -8%,
+      color-mix(in srgb, var(--page-section-accent-alt) 18%, transparent),
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at 0% 100%,
+      color-mix(in srgb, var(--page-section-accent) 12%, transparent),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 99%, transparent),
+      color-mix(in srgb, var(--surface-strong) 88%, transparent)
+    ),
+    var(--surface);
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(
+    .benefit-band h2,
+    .service-card h3,
+    .software-card h3,
+    .benefit-card strong,
+    .proposal-card strong,
+    .process-step h3,
+    .price-card h3,
+    .contact-card h2,
+    .software-price h3
+  ) {
+  transition:
+    transform 0.28s ease,
+    color 0.28s ease,
+    text-shadow 0.28s ease;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(
+    .benefit-band article,
+    .service-card,
+    .software-card,
+    .benefit-card,
+    .proposal-card,
+    .process-step,
+    .price-card,
+    .contact-card,
+    .software-price
+  ):hover
+  :is(h2, h3, strong),
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(
+    .benefit-band article,
+    .service-card,
+    .software-card,
+    .benefit-card,
+    .proposal-card,
+    .process-step,
+    .price-card,
+    .contact-card,
+    .software-price
+  ).is-tilting
+  :is(h2, h3, strong) {
+  transform: translateY(-2px);
+  color: color-mix(in srgb, var(--page-section-accent) 58%, var(--ink));
+  text-shadow: 0 12px 22px color-mix(in srgb, var(--page-section-accent) 16%, transparent);
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(.panel-label, .card-kicker, .process-step span) {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.42rem 0.78rem;
+  border: 1px solid color-mix(in srgb, var(--page-section-accent) 26%, var(--line));
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--page-section-accent) 14%, transparent),
+      color-mix(in srgb, var(--surface) 95%, transparent)
+    ),
+    var(--surface);
+  box-shadow: 0 12px 26px color-mix(in srgb, var(--page-section-shadow) 16%, transparent);
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .benefit-band
+  span {
+  box-shadow:
+    0 16px 32px color-mix(in srgb, var(--page-section-shadow) 18%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--page-section-accent-alt) 18%, transparent);
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--page-section-accent) 82%, var(--ink)),
+    color-mix(in srgb, var(--page-section-accent-alt) 46%, var(--ink))
+  );
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(
+    .benefits-grid,
+    .service-grid,
+    .software-grid,
+    .software-summary,
+    .process-grid,
+    .pricing-grid,
+    .note-grid,
+    .terms-grid,
+    .design-hero__metrics
+  )
+  > *:nth-child(1) {
+  --reveal-delay: 0.05s;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(
+    .benefits-grid,
+    .service-grid,
+    .software-grid,
+    .software-summary,
+    .process-grid,
+    .pricing-grid,
+    .note-grid,
+    .terms-grid,
+    .design-hero__metrics
+  )
+  > *:nth-child(2) {
+  --reveal-delay: 0.13s;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(
+    .benefits-grid,
+    .service-grid,
+    .software-grid,
+    .software-summary,
+    .process-grid,
+    .pricing-grid,
+    .note-grid,
+    .terms-grid,
+    .design-hero__metrics
+  )
+  > *:nth-child(3) {
+  --reveal-delay: 0.21s;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(
+    .benefits-grid,
+    .service-grid,
+    .software-grid,
+    .pricing-grid,
+    .note-grid,
+    .terms-grid
+  )
+  > *:nth-child(4) {
+  --reveal-delay: 0.29s;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(.benefits-grid, .service-grid, .software-grid, .pricing-grid)
+  > *:nth-child(5) {
+  --reveal-delay: 0.37s;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(.benefits-grid, .software-grid)
+  > *:nth-child(6) {
+  --reveal-delay: 0.45s;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .benefit-band.reveal
+  article,
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .proposal-stack.reveal
+  .proposal-card {
+  opacity: 0;
+  transform: translateY(26px) scale(0.95) rotate(-1.1deg);
+  filter: blur(10px);
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .benefit-band.reveal.is-visible
+  article,
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .proposal-stack.reveal.is-visible
+  .proposal-card {
+  animation: page-card-pop 0.88s cubic-bezier(0.18, 0.82, 0.2, 1) forwards;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .benefit-band.reveal.is-visible
+  article:nth-child(1),
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .proposal-stack.reveal.is-visible
+  .proposal-card:nth-child(1) {
+  animation-delay: 0.08s;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .benefit-band.reveal.is-visible
+  article:nth-child(2),
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .proposal-stack.reveal.is-visible
+  .proposal-card:nth-child(2) {
+  animation-delay: 0.18s;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .benefit-band.reveal.is-visible
+  article:nth-child(3),
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  .proposal-stack.reveal.is-visible
+  .proposal-card:nth-child(3) {
+  animation-delay: 0.28s;
+}
+
+body[data-embedded-frame="true"] .benefit-band.reveal article,
+body[data-embedded-frame="true"] .proposal-stack.reveal .proposal-card {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  animation: none;
+}
+
+@keyframes page-card-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes page-card-scan {
+  0% {
+    transform: translateX(-82%) skewX(-18deg);
+  }
+
+  50% {
+    transform: translateX(8%) skewX(-18deg);
+  }
+
+  100% {
+    transform: translateX(82%) skewX(-18deg);
+  }
+}
+
+@keyframes page-card-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 0.96;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes page-card-prism {
+  0% {
+    opacity: 0.48;
+    transform: rotate(-10deg) translate3d(-3%, 0, 0) scale(0.94);
+  }
+
+  50% {
+    opacity: 0.82;
+    transform: rotate(-2deg) translate3d(5%, -4%, 0) scale(1.02);
+  }
+
+  100% {
+    opacity: 0.56;
+    transform: rotate(6deg) translate3d(2%, 4%, 0) scale(0.98);
+  }
+}
+
+@keyframes page-card-mesh {
+  0% {
+    background-position:
+      0 0,
+      0 0,
+      0 0;
+  }
+
+  100% {
+    background-position:
+      42px 18px,
+      -16px 32px,
+      0 0;
+  }
+}
+
+@keyframes page-card-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(26px) scale(0.95) rotate(-1.1deg);
+    filter: blur(10px);
+  }
+
+  62% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.015) rotate(0.35deg);
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+    filter: blur(0);
+  }
+}
+
+body[data-page="marketing"] .card-variant {
+  overflow: visible;
+  border-radius: 1.72rem 1.26rem 1.86rem 1.34rem;
+  background:
+    linear-gradient(
+      148deg,
+      color-mix(in srgb, var(--page-section-accent) 18%, transparent),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 100% 4%,
+      color-mix(in srgb, var(--page-section-accent-alt) 16%, transparent),
+      transparent 32%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 98%, transparent),
+      color-mix(in srgb, var(--surface-strong) 84%, transparent)
+    ),
+    var(--surface);
+}
+
+body[data-page="marketing"] .card-variant::before {
+  --card-magic-rest-y: 0px;
+  --card-magic-rest-scale: 0.84;
+  --card-magic-peak-y: 4px;
+  --card-magic-peak-scale: 1.02;
+  position: absolute;
+  inset: auto 10% -14% 10%;
+  height: 42%;
+  border-radius: 999px;
+  background:
+    radial-gradient(
+      circle at 26% 50%,
+      color-mix(in srgb, var(--page-section-accent) 44%, transparent),
+      transparent 58%
+    ),
+    radial-gradient(
+      circle at 74% 50%,
+      color-mix(in srgb, var(--page-section-accent-alt) 42%, transparent),
+      transparent 60%
+    );
+  content: "";
+  opacity: 0.42;
+  pointer-events: none;
+  filter: blur(24px);
+  transform: translateY(var(--card-magic-rest-y)) scale(var(--card-magic-rest-scale));
+  animation: page-card-magic-halo 7.8s ease-in-out infinite;
+  z-index: 0;
+}
+
+body[data-page="marketing"] .card-variant:hover::before,
+body[data-page="marketing"] .card-variant.is-tilting::before {
+  --card-magic-rest-y: 2px;
+  --card-magic-rest-scale: 0.9;
+  --card-magic-peak-y: 6px;
+  --card-magic-peak-scale: 1.08;
+  filter: blur(28px);
+}
+
+body[data-page="marketing"]
+  :is(.proposal-card, .price-card, .contact-card).card-variant {
+  box-shadow:
+    0 28px 72px color-mix(in srgb, var(--page-section-shadow) 34%, transparent),
+    inset 0 1px 0 color-mix(in srgb, #ffffff 18%, transparent);
+}
+
+body[data-page="software"] .card-variant {
+  overflow: hidden;
+  border-radius: 1.48rem;
+  border-color: color-mix(in srgb, var(--page-section-accent) 20%, var(--line));
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--page-section-accent) 12%, transparent),
+      transparent 28%
+    ),
+    linear-gradient(
+      140deg,
+      color-mix(in srgb, var(--page-section-rgb-hot) 10%, transparent),
+      transparent 54%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 96%, transparent),
+      color-mix(in srgb, var(--surface-strong) 88%, transparent)
+    ),
+    var(--surface);
+  box-shadow:
+    0 22px 58px color-mix(in srgb, var(--page-section-shadow) 36%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--page-section-accent) 10%, transparent),
+    0 0 28px color-mix(in srgb, var(--page-section-accent) 8%, transparent);
+}
+
+body[data-page="software"] .card-variant::before {
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background:
+    radial-gradient(
+      circle at 14% 18%,
+      color-mix(in srgb, var(--page-section-rgb-hot) 24%, transparent),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      color-mix(in srgb, var(--page-section-accent-alt) 16%, transparent),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 99%, transparent),
+      color-mix(in srgb, var(--surface-strong) 92%, transparent)
+    ),
+    var(--surface);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--page-section-accent) 16%, transparent),
+    inset 0 0 34px color-mix(in srgb, var(--page-section-accent) 8%, transparent);
+  content: "";
+  opacity: 0.96;
+  pointer-events: none;
+  transition:
+    box-shadow 0.32s ease,
+    opacity 0.32s ease;
+  z-index: 0;
+}
+
+body[data-page="software"] .card-variant:hover::before,
+body[data-page="software"] .card-variant.is-tilting::before {
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--page-section-accent-alt) 20%, transparent),
+    inset 0 0 46px color-mix(in srgb, var(--page-section-accent) 14%, transparent);
+  opacity: 1;
+}
+
+body[data-page="software"] .card-variant.card-variant--scan::after {
+  inset: -68% 39%;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    transparent 0 10%,
+    color-mix(in srgb, var(--page-section-rgb-hot) 94%, transparent) 22%,
+    color-mix(in srgb, var(--page-section-accent) 94%, transparent) 48%,
+    color-mix(in srgb, var(--page-section-accent-alt) 92%, transparent) 76%,
+    transparent 92%
+  );
+  opacity: 0.54;
+  filter: blur(1px);
+  transform: rotate(0deg) scaleY(1);
+  animation: page-card-rgb-core calc(var(--card-scan-speed) * 1.12) linear infinite;
+}
+
+body[data-page="software"] .card-variant.card-variant--scan:hover::after,
+body[data-page="software"] .card-variant.card-variant--scan.is-tilting::after {
+  opacity: 0.82;
+}
+
+body[data-page="software"] .card-variant.card-variant--orbit::after {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--page-section-rgb-hot) 96%, transparent),
+    color-mix(in srgb, var(--page-section-accent) 96%, transparent),
+    color-mix(in srgb, var(--page-section-accent-alt) 96%, transparent),
+    color-mix(in srgb, var(--page-section-rgb-hot) 96%, transparent)
+  );
+  background-size: 300% 300%;
+  opacity: 0.8;
+  animation: page-card-rgb-border 5.8s linear infinite;
+}
+
+body[data-page="software"] .card-variant.card-variant--orbit:hover::after,
+body[data-page="software"] .card-variant.card-variant--orbit.is-tilting::after {
+  opacity: 1;
+}
+
+body[data-page="software"] :is(.software-benefits, .note-card).card-variant--mesh {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--page-section-accent) 10%, transparent),
+      transparent 26%
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--page-section-accent-alt) 18%, transparent) 0 3px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 17px,
+      color-mix(in srgb, var(--page-section-rgb-hot) 8%, transparent) 17px 18px
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 98%, transparent),
+      color-mix(in srgb, var(--surface-strong) 90%, transparent)
+    ),
+    var(--surface);
+}
+
+body[data-page="design"] .card-variant {
+  overflow: visible;
+  border-radius: 1.86rem 1.24rem 1.78rem 1.36rem;
+  background:
+    linear-gradient(
+      138deg,
+      color-mix(in srgb, var(--page-section-accent) 12%, transparent) 0 18%,
+      transparent 18% 54%,
+      color-mix(in srgb, var(--page-section-accent-alt) 10%, transparent) 54% 68%,
+      transparent 68%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 98%, transparent),
+      color-mix(in srgb, var(--surface-strong) 86%, transparent)
+    ),
+    var(--surface);
+}
+
+body[data-page="design"] .card-variant::before {
+  --card-paper-start-x: 11px;
+  --card-paper-start-y: 12px;
+  --card-paper-start-rotate: -2.8deg;
+  --card-paper-peak-x: 13px;
+  --card-paper-peak-y: 8px;
+  --card-paper-peak-rotate: -1.6deg;
+  position: absolute;
+  inset: 0;
+  border: 1px solid color-mix(in srgb, var(--page-section-accent) 12%, var(--line));
+  border-radius: 1.72rem 1.18rem 1.68rem 1.18rem;
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--surface-strong) 94%, transparent),
+      color-mix(in srgb, var(--page-section-accent-alt) 10%, var(--surface))
+    ),
+    var(--surface);
+  box-shadow:
+    0 20px 42px color-mix(in srgb, var(--page-section-shadow) 20%, transparent),
+    0 0 0 1px color-mix(in srgb, #ffffff 14%, transparent);
+  content: "";
+  opacity: 0.6;
+  pointer-events: none;
+  transform: translate3d(var(--card-paper-start-x), var(--card-paper-start-y), 0)
+    rotate(var(--card-paper-start-rotate));
+  animation: page-card-paper-drift 8.2s ease-in-out infinite;
+  z-index: 0;
+}
+
+body[data-page="design"]
+  :is(
+    .benefit-band,
+    .benefits-grid,
+    .service-grid,
+    .process-grid,
+    .note-grid,
+    .pricing-grid
+  )
+  > *:nth-child(even).card-variant::before {
+  --card-paper-start-x: -9px;
+  --card-paper-start-y: 11px;
+  --card-paper-start-rotate: 2.4deg;
+  --card-paper-peak-x: -12px;
+  --card-paper-peak-y: 7px;
+  --card-paper-peak-rotate: 1.4deg;
+}
+
+body[data-page="design"] .card-variant:hover::before,
+body[data-page="design"] .card-variant.is-tilting::before {
+  opacity: 0.82;
+}
+
+body[data-page="design"] :is(.service-card, .note-card).card-variant {
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--page-section-accent-alt) 14%, transparent),
+      transparent 46%
+    ),
+    repeating-linear-gradient(
+      135deg,
+      transparent 0 12px,
+      color-mix(in srgb, var(--page-section-accent) 8%, transparent) 12px 13px
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 98%, transparent),
+      color-mix(in srgb, var(--surface-strong) 86%, transparent)
+    ),
+    var(--surface);
+  background-size:
+    100% 100%,
+    160% 160%,
+    100% 100%,
+    auto;
+  background-position:
+    0 0,
+    0 0,
+    0 0,
+    0 0;
+  transition:
+    background-position 0.42s ease,
+    box-shadow 0.32s ease,
+    border-color 0.32s ease,
+    transform 0.32s ease;
+}
+
+body[data-page="design"] :is(.service-card, .note-card).card-variant:hover,
+body[data-page="design"] :is(.service-card, .note-card).card-variant.is-tilting {
+  background-position:
+    0 0,
+    34px 18px,
+    0 0,
+    0 0;
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(.panel-label, .card-kicker, .process-step span) {
+  gap: 0.45rem;
+}
+
+body[data-page="marketing"] :is(.panel-label, .card-kicker, .process-step span)::before {
+  content: "//";
+  font-size: 0.72em;
+  font-weight: 800;
+  letter-spacing: -0.08em;
+  opacity: 0.72;
+}
+
+body[data-page="software"] :is(.panel-label, .card-kicker, .process-step span) {
+  border-radius: 0.88rem;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--page-section-accent) 16%, transparent),
+    0 0 20px color-mix(in srgb, var(--page-section-accent) 10%, transparent);
+}
+
+body[data-page="software"] :is(.panel-label, .card-kicker, .process-step span)::before {
+  content: "<>";
+  font-size: 0.74em;
+  font-weight: 800;
+  letter-spacing: -0.12em;
+  opacity: 0.82;
+}
+
+body[data-page="design"] :is(.panel-label, .card-kicker, .process-step span) {
+  border-radius: 1rem 1rem 0.48rem 1rem;
+}
+
+body[data-page="design"] :is(.panel-label, .card-kicker, .process-step span)::before {
+  content: "[]";
+  font-size: 0.7em;
+  font-weight: 800;
+  letter-spacing: -0.1em;
+  opacity: 0.74;
+}
+
+@keyframes page-card-magic-halo {
+  0%,
+  100% {
+    opacity: 0.38;
+    transform: translateY(var(--card-magic-rest-y)) scale(var(--card-magic-rest-scale));
+  }
+
+  50% {
+    opacity: 0.68;
+    transform: translateY(var(--card-magic-peak-y)) scale(var(--card-magic-peak-scale));
+  }
+}
+
+@keyframes page-card-rgb-core {
+  0% {
+    transform: rotate(0deg) scaleY(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scaleY(1.08);
+  }
+
+  100% {
+    transform: rotate(1turn) scaleY(1);
+  }
+}
+
+@keyframes page-card-rgb-border {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes page-card-paper-drift {
+  0%,
+  100% {
+    transform: translate3d(var(--card-paper-start-x), var(--card-paper-start-y), 0)
+      rotate(var(--card-paper-start-rotate));
+  }
+
+  50% {
+    transform: translate3d(var(--card-paper-peak-x), var(--card-paper-peak-y), 0)
+      rotate(var(--card-paper-peak-rotate));
+  }
+}
+
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(
+    .card-comp--magic,
+    .card-comp--premium,
+    .card-comp--stack,
+    .card-comp--fold,
+    .card-comp--console,
+    .card-comp--beam,
+    .card-comp--rgb,
+    .card-comp--depth,
+    .card-comp--editorial,
+    .card-comp--swatch
+  ).card-variant::before,
+body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+  :is(
+    .card-comp--magic,
+    .card-comp--premium,
+    .card-comp--stack,
+    .card-comp--fold,
+    .card-comp--console,
+    .card-comp--beam,
+    .card-comp--rgb,
+    .card-comp--depth,
+    .card-comp--editorial,
+    .card-comp--swatch
+  ).card-variant::after {
+  pointer-events: none;
+}
+
+body[data-page="marketing"] .card-comp--magic.card-variant {
+  overflow: visible;
+  border: 0;
+  border-radius: 1.55rem;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--page-section-accent) 84%, #fff),
+    color-mix(in srgb, var(--page-section-accent-alt) 78%, #fff)
+  );
+  box-shadow: 0 22px 58px color-mix(in srgb, var(--page-section-shadow) 20%, transparent);
+}
+
+body[data-page="marketing"] .card-comp--magic.card-variant::before {
+  position: absolute;
+  inset: auto 8% -14% 8%;
+  height: 44%;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--page-section-accent) 58%, transparent),
+    color-mix(in srgb, var(--page-section-accent-alt) 54%, transparent)
+  );
+  content: "";
+  filter: blur(28px);
+  opacity: 0.52;
+  transform: scale(0.88);
+  animation: card-comp-magic-halo 7.2s ease-in-out infinite;
+  z-index: -1;
+}
+
+body[data-page="marketing"] .card-comp--magic.card-variant::after {
+  position: absolute;
+  inset: 4px;
+  border-radius: calc(1.55rem - 4px);
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      color-mix(in srgb, var(--page-section-accent-alt) 20%, transparent),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 99%, transparent),
+      color-mix(in srgb, var(--surface-strong) 88%, transparent)
+    ),
+    var(--surface);
+  content: "";
+  opacity: 1;
+  transform: none;
+  animation: none;
+  z-index: 0;
+}
+
+body:is([data-page="marketing"], [data-page="design"]) .card-comp--premium.card-variant {
+  overflow: visible;
+  border: 0;
+  border-radius: 1.65rem;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--page-section-accent) 56%, transparent),
+    color-mix(in srgb, var(--page-section-accent-alt) 52%, transparent)
+  );
+  box-shadow: 0 28px 74px color-mix(in srgb, var(--page-section-shadow) 28%, transparent);
+}
+
+body:is([data-page="marketing"], [data-page="design"]) .card-comp--premium.card-variant::before {
+  position: absolute;
+  inset: -10px;
+  border-radius: inherit;
+  background:
+    radial-gradient(
+      circle at 88% 10%,
+      color-mix(in srgb, var(--page-section-accent-alt) 28%, transparent),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 0% 100%,
+      color-mix(in srgb, var(--page-section-accent) 24%, transparent),
+      transparent 34%
+    );
+  content: "";
+  filter: blur(18px);
+  opacity: 0.54;
+  z-index: -1;
+}
+
+body:is([data-page="marketing"], [data-page="design"]) .card-comp--premium.card-variant::after {
+  position: absolute;
+  inset: 2px;
+  border-radius: calc(1.65rem - 2px);
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      color-mix(in srgb, var(--page-section-accent-alt) 18%, transparent),
+      transparent 26%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 99%, transparent),
+      color-mix(in srgb, var(--surface-strong) 90%, transparent)
+    ),
+    var(--surface);
+  content: "";
+  opacity: 1;
+  transform: none;
+  animation: none;
+  z-index: 0;
+}
+
+body:is([data-page="marketing"], [data-page="design"]) .card-comp--stack.card-variant {
+  overflow: visible;
+  border: 2px solid color-mix(in srgb, var(--page-section-accent) 18%, var(--line));
+  border-radius: 1.38rem;
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--page-section-accent) 10%, transparent),
+      transparent 42%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 99%, transparent),
+      color-mix(in srgb, var(--surface-strong) 88%, transparent)
+    ),
+    var(--surface);
+  box-shadow: 0 22px 58px color-mix(in srgb, var(--page-section-shadow) 20%, transparent);
+}
+
+body:is([data-page="marketing"], [data-page="design"]) .card-comp--stack.card-variant::before,
+body:is([data-page="marketing"], [data-page="design"]) .card-comp--stack.card-variant::after {
+  position: absolute;
+  inset: 0;
+  border: inherit;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 99%, transparent),
+      color-mix(in srgb, var(--surface-strong) 90%, transparent)
+    ),
+    var(--surface);
+  content: "";
+  z-index: -1;
+  transition: transform 0.32s ease;
+}
+
+body:is([data-page="marketing"], [data-page="design"]) .card-comp--stack.card-variant::before {
+  transform: translate(-10px, -8px) rotate(-2.4deg);
+}
+
+body:is([data-page="marketing"], [data-page="design"]) .card-comp--stack.card-variant::after {
+  transform: translate(10px, 9px) rotate(2.6deg);
+}
+
+body:is([data-page="marketing"], [data-page="design"])
+  :is(.proposal-stack, .note-grid)
+  > *:nth-child(even).card-comp--stack::before {
+  transform: translate(10px, -8px) rotate(2.2deg);
+}
+
+body:is([data-page="marketing"], [data-page="design"])
+  :is(.proposal-stack, .note-grid)
+  > *:nth-child(even).card-comp--stack::after {
+  transform: translate(-10px, 9px) rotate(-2.6deg);
+}
+
+body:is([data-page="marketing"], [data-page="design"]) .card-comp--stack.card-variant:hover::before,
+body:is([data-page="marketing"], [data-page="design"]) .card-comp--stack.card-variant.is-tilting::before {
+  transform: translate(-14px, -11px) rotate(-3.2deg);
+}
+
+body:is([data-page="marketing"], [data-page="design"]) .card-comp--stack.card-variant:hover::after,
+body:is([data-page="marketing"], [data-page="design"]) .card-comp--stack.card-variant.is-tilting::after {
+  transform: translate(14px, 12px) rotate(3.1deg);
+}
+
+body[data-page="marketing"] .card-comp--fold.card-variant {
+  overflow: hidden;
+  border-radius: 1.34rem;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--page-section-accent-alt) 10%, transparent),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 99%, transparent),
+      color-mix(in srgb, var(--surface-strong) 88%, transparent)
+    ),
+    var(--surface);
+}
+
+body[data-page="marketing"] .card-comp--fold.card-variant::before {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 14% 0%,
+      color-mix(in srgb, var(--page-section-accent) 16%, transparent),
+      transparent 22%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--page-section-accent-alt) 8%, transparent),
+      transparent 36%
+    );
+  content: "";
+  opacity: 0.92;
+  z-index: 0;
+}
+
+body[data-page="marketing"] .card-comp--fold.card-variant::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 56%;
+  border-top: 1px solid color-mix(in srgb, var(--page-section-accent) 18%, transparent);
+  background: linear-gradient(
+    180deg,
+    transparent,
+    color-mix(in srgb, var(--page-section-accent-alt) 24%, transparent)
+  );
+  content: "";
+  opacity: 0.38;
+  transform: perspective(900px) rotateX(-88deg);
+  transform-origin: bottom;
+  animation: none;
+  transition:
+    transform 0.42s ease,
+    opacity 0.42s ease;
+  z-index: 0;
+}
+
+body[data-page="marketing"] .card-comp--fold.card-variant:hover::after,
+body[data-page="marketing"] .card-comp--fold.card-variant.is-tilting::after {
+  opacity: 0.74;
+  transform: perspective(900px) rotateX(-8deg);
+}
+
+body[data-page="software"] :is(.card-comp--console, .card-comp--beam, .card-comp--rgb, .card-comp--depth).card-variant {
+  color: var(--ink-inverse);
+}
+
+body[data-page="software"] :is(.card-comp--console, .card-comp--beam, .card-comp--rgb, .card-comp--depth).card-variant :is(h2, h3, p, strong, li, .price) {
+  color: inherit;
+}
+
+body[data-page="software"] :is(.card-comp--console, .card-comp--beam, .card-comp--rgb, .card-comp--depth).card-variant :is(.panel-label, .card-kicker, .process-step span) {
+  color: color-mix(in srgb, #ffffff 84%, var(--page-section-accent-alt));
+  border-color: color-mix(in srgb, var(--page-section-accent) 18%, rgba(255, 255, 255, 0.18));
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: none;
+}
+
+body[data-page="software"] .card-comp--console.card-variant {
+  overflow: hidden;
+  border-color: color-mix(in srgb, var(--page-section-accent) 18%, rgba(255, 255, 255, 0.12));
+  border-radius: 1.34rem;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, #03110d 92%, var(--surface)),
+    color-mix(in srgb, #071821 86%, var(--surface))
+  );
+  box-shadow:
+    0 22px 58px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px color-mix(in srgb, var(--page-section-accent) 8%, transparent);
+}
+
+body[data-page="software"] .card-comp--console.card-variant::before {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 15px,
+      color-mix(in srgb, var(--page-section-accent) 8%, transparent) 15px 16px
+    ),
+    radial-gradient(
+      circle at 86% 12%,
+      color-mix(in srgb, var(--page-section-rgb-hot) 20%, transparent),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at 10% 0%,
+      color-mix(in srgb, var(--page-section-accent-alt) 16%, transparent),
+      transparent 20%
+    );
+  content: "";
+  opacity: 0.96;
+  z-index: 0;
+}
+
+body[data-page="software"] .card-comp--console.card-variant::after {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 3.3rem;
+  height: 0.52rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--page-section-rgb-hot) 0 33%,
+    var(--page-section-accent) 33% 66%,
+    var(--page-section-accent-alt) 66% 100%
+  );
+  box-shadow: 0 0 18px color-mix(in srgb, var(--page-section-accent) 38%, transparent);
+  content: "";
+  opacity: 0.94;
+  transform: none;
+  animation: card-comp-console-ping 4.6s ease-in-out infinite;
+  z-index: 0;
+}
+
+body[data-page="software"] .card-comp--beam.card-variant {
+  overflow: hidden;
+  border: 0;
+  border-radius: 1.4rem;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, #07182e 90%, var(--surface)),
+    color-mix(in srgb, #08131e 88%, var(--surface))
+  );
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.34);
+}
+
+body[data-page="software"] .card-comp--beam.card-variant::before {
+  position: absolute;
+  top: -32%;
+  left: calc(50% - 3.5rem);
+  width: 7rem;
+  height: 164%;
+  border-radius: 999px;
+  background-image: linear-gradient(
+    180deg,
+    var(--page-section-rgb-hot),
+    var(--page-section-accent),
+    var(--page-section-accent-alt)
+  );
+  content: "";
+  opacity: 0.94;
+  animation: card-comp-beam-spin 4.4s linear infinite;
+  z-index: 0;
+}
+
+body[data-page="software"] .card-comp--beam.card-variant::after {
+  position: absolute;
+  inset: 4px;
+  border-radius: 1.08rem;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      color-mix(in srgb, var(--page-section-accent-alt) 12%, transparent),
+      transparent 24%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, #0b1926 94%, var(--surface)),
+      color-mix(in srgb, #07131c 92%, var(--surface))
+    );
+  content: "";
+  opacity: 1;
+  transform: none;
+  animation: none;
+  z-index: 0;
+}
+
+body[data-page="software"] .card-comp--rgb.card-variant {
+  overflow: visible;
+  border: 0;
+  border-radius: 1.46rem;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, #09121a 92%, var(--surface)),
+    color-mix(in srgb, #18222e 78%, var(--surface))
+  );
+  box-shadow: 0 24px 66px rgba(0, 0, 0, 0.34);
+}
+
+body[data-page="software"] .card-comp--rgb.card-variant::before,
+body[data-page="software"] .card-comp--rgb.card-variant::after {
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(
+    45deg,
+    var(--page-section-rgb-hot),
+    var(--page-section-accent),
+    var(--page-section-accent-alt),
+    var(--page-section-rgb-hot),
+    var(--page-section-accent-alt)
+  );
+  background-size: 320% 320%;
+  content: "";
+  animation: card-comp-rgb-shift 14s linear infinite;
+  z-index: -1;
+}
+
+body[data-page="software"] .card-comp--rgb.card-variant::after {
+  filter: blur(22px);
+  opacity: 0.76;
+}
+
+body[data-page="software"] .card-comp--depth.card-variant {
+  overflow: hidden;
+  border: 2px solid color-mix(in srgb, var(--page-section-accent) 18%, rgba(255, 255, 255, 0.14));
+  border-radius: 1.38rem;
+  background:
+    linear-gradient(
+      135deg,
+      #0000 18.75%,
+      color-mix(in srgb, var(--page-section-accent-alt) 14%, transparent) 0 31.25%,
+      #0000 0
+    ),
+    repeating-linear-gradient(
+      45deg,
+      color-mix(in srgb, #0b131b 96%, var(--surface)) -6.25% 6.25%,
+      color-mix(in srgb, var(--page-section-accent) 10%, #0f1720) 0 18.75%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, #07121b 92%, var(--surface)),
+      color-mix(in srgb, #09111a 90%, var(--surface))
+    );
+  background-size:
+    52px 52px,
+    52px 52px,
+    auto;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.34);
+  transform-style: preserve-3d;
+  transition:
+    transform 0.38s ease,
+    background-position 0.5s ease,
+    box-shadow 0.38s ease;
+}
+
+body[data-page="software"] .card-comp--depth.card-variant::before {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.45rem;
+  height: 2.45rem;
+  border: 1px solid color-mix(in srgb, var(--page-section-accent-alt) 32%, transparent);
+  border-radius: 0.9rem;
+  background: linear-gradient(
+    135deg,
+    var(--page-section-rgb-hot) 0 34%,
+    var(--page-section-accent) 34% 68%,
+    var(--page-section-accent-alt) 68% 100%
+  );
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.24);
+  content: "";
+  opacity: 0.76;
+  transform: translateZ(24px);
+  z-index: 0;
+}
+
+body[data-page="software"] .card-comp--depth.card-variant::after {
+  content: none;
+}
+
+body[data-page="software"] .card-comp--depth.card-variant:hover,
+body[data-page="software"] .card-comp--depth.card-variant.is-tilting {
+  background-position:
+    -72px 72px,
+    -72px 72px,
+    0 0;
+  box-shadow: 0 30px 78px rgba(0, 0, 0, 0.38);
+}
+
+body[data-page="design"] .card-comp--editorial.card-variant {
+  overflow: visible;
+  border: 2px solid color-mix(in srgb, var(--page-section-accent) 16%, var(--line));
+  border-radius: 1.76rem 1.08rem 1.6rem 1.18rem;
+  background:
+    linear-gradient(
+      140deg,
+      color-mix(in srgb, var(--page-section-accent-alt) 14%, transparent),
+      transparent 42%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 99%, transparent),
+      color-mix(in srgb, var(--surface-strong) 88%, transparent)
+    ),
+    var(--surface);
+  box-shadow: 0 24px 62px color-mix(in srgb, var(--page-section-shadow) 22%, transparent);
+}
+
+body[data-page="design"] .card-comp--editorial.card-variant::before {
+  position: absolute;
+  inset: 0;
+  border: inherit;
+  border-radius: 1.6rem 1rem 1.44rem 1rem;
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--surface-strong) 96%, transparent),
+      color-mix(in srgb, var(--page-section-accent-alt) 8%, var(--surface))
+    ),
+    var(--surface);
+  content: "";
+  transform: translate(11px, 12px) rotate(-2.3deg);
+  z-index: -1;
+  transition: transform 0.34s ease;
+}
+
+body[data-page="design"] .card-comp--editorial.card-variant::after {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  height: 0.38rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--page-section-accent) 0 33%,
+    var(--page-section-accent-alt) 33% 66%,
+    #ffd27d 66% 100%
+  );
+  content: "";
+  opacity: 0.92;
+  transform: scaleX(0.78);
+  transform-origin: left center;
+  animation: none;
+  z-index: 0;
+  transition: transform 0.34s ease;
+}
+
+body[data-page="design"] .service-grid > *:nth-child(even).card-comp--editorial::before,
+body[data-page="design"] .process-grid > *:nth-child(even).card-comp--editorial::before {
+  transform: translate(-11px, 12px) rotate(2.1deg);
+}
+
+body[data-page="design"] .card-comp--editorial.card-variant:hover::before,
+body[data-page="design"] .card-comp--editorial.card-variant.is-tilting::before {
+  transform: translate(14px, 14px) rotate(-3deg);
+}
+
+body[data-page="design"] .card-comp--editorial.card-variant:hover::after,
+body[data-page="design"] .card-comp--editorial.card-variant.is-tilting::after {
+  transform: scaleX(1);
+}
+
+body[data-page="design"] .card-comp--swatch.card-variant {
+  overflow: hidden;
+  border-radius: 1.34rem;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--page-section-accent) 9%, transparent),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 99%, transparent),
+      color-mix(in srgb, var(--surface-strong) 88%, transparent)
+    ),
+    var(--surface);
+  box-shadow: 0 22px 58px color-mix(in srgb, var(--page-section-shadow) 18%, transparent);
+}
+
+body[data-page="design"] .card-comp--swatch.card-variant::before {
+  position: absolute;
+  top: 0.95rem;
+  right: 0.95rem;
+  width: 5rem;
+  height: 0.56rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--page-section-accent) 0 35%,
+    var(--page-section-accent-alt) 35% 70%,
+    #ffd27d 70% 100%
+  );
+  content: "";
+  box-shadow: 0 0 16px color-mix(in srgb, var(--page-section-accent) 22%, transparent);
+  z-index: 0;
+}
+
+body[data-page="design"] .card-comp--swatch.card-variant::after {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0.42rem;
+  background: linear-gradient(
+    180deg,
+    var(--page-section-accent),
+    var(--page-section-accent-alt)
+  );
+  content: "";
+  opacity: 0.86;
+  transform: none;
+  animation: none;
+  z-index: 0;
+}
+
+@keyframes card-comp-magic-halo {
+  0%,
+  100% {
+    opacity: 0.46;
+    transform: scale(0.88);
+  }
+
+  50% {
+    opacity: 0.72;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes card-comp-console-ping {
+  0%,
+  100% {
+    opacity: 0.76;
+    transform: scaleX(0.94);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleX(1.04);
+  }
+}
+
+@keyframes card-comp-beam-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes card-comp-rgb-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 body[data-page="home"] .background-glow--left {
@@ -7515,6 +9632,9 @@ body[data-preview-expanded="true"] .home-preview-panel__viewport iframe {
   .reveal {
     opacity: 1;
     translate: 0 0;
+    scale: 1;
+    rotate: 0deg;
+    filter: none;
   }
 
   .scene-shell,
@@ -7556,6 +9676,53 @@ body[data-preview-expanded="true"] .home-preview-panel__viewport iframe {
   }
 
   .design-hero__chip {
+    animation: none;
+  }
+
+  body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+    :is(
+      .benefit-band article,
+      .service-card,
+      .software-card,
+      .software-benefits,
+      .software-price,
+      .benefit-card,
+      .proposal-card,
+      .process-step,
+      .price-card,
+      .side-card,
+      .note-card,
+      .terms-card,
+      .contact-card
+    )::before,
+  body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+    :is(
+      .benefit-band article,
+      .service-card,
+      .software-card,
+      .software-benefits,
+      .software-price,
+      .benefit-card,
+      .proposal-card,
+      .process-step,
+      .price-card,
+      .side-card,
+      .note-card,
+      .terms-card,
+      .contact-card
+    )::after {
+    animation: none;
+  }
+
+  body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+    .benefit-band.reveal
+    article,
+  body:is([data-page="marketing"], [data-page="software"], [data-page="design"])
+    .proposal-stack.reveal
+    .proposal-card {
+    opacity: 1;
+    transform: none;
+    filter: none;
     animation: none;
   }
 }
