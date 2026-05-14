@@ -25,6 +25,17 @@ document.querySelectorAll("[data-site-bubbles]").forEach((mount) => {
 });
 
 if (!isEmbeddedFrame) {
+  const skipLink = document.createElement("a");
+  skipLink.className = "skip-link";
+  skipLink.href = "#main-content";
+  skipLink.textContent = "Saltar al contenido";
+  document.body.prepend(skipLink);
+
+  const mainElement = document.querySelector("main");
+  if (mainElement && !mainElement.id) {
+    mainElement.id = "main-content";
+  }
+
   const loaderMount = document.createElement("div");
   loaderMount.innerHTML = renderSiteLoader();
   document.body.prepend(loaderMount.firstElementChild);
@@ -55,6 +66,7 @@ if (!isEmbeddedFrame) {
     if (!link) return;
 
     const href = link.getAttribute("href");
+    if (link.classList.contains("skip-link")) return;
     if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:") || link.target === "_blank") return;
 
     // Only internal links
@@ -66,12 +78,49 @@ if (!isEmbeddedFrame) {
     if (document.body.classList.contains("is-routing")) return;
 
     document.body.classList.add("is-routing");
+    link.classList.add("is-loading-link");
 
     setTimeout(() => {
       window.location.assign(href);
     }, prefersReducedMotion.matches ? 50 : 750);
   });
 }
+
+window.showToast = (message) => {
+  const existingToast = document.querySelector(".site-toast");
+  if (existingToast) existingToast.remove();
+
+  const toast = document.createElement("div");
+  toast.className = "site-toast";
+  toast.setAttribute("role", "status");
+  toast.setAttribute("aria-live", "polite");
+  const inner = document.createElement("div");
+  inner.className = "site-toast__inner";
+
+  const icon = document.createElement("span");
+  icon.className = "site-toast__icon";
+  icon.setAttribute("aria-hidden", "true");
+  icon.textContent = "✓";
+
+  const msg = document.createElement("span");
+  msg.className = "site-toast__message";
+  msg.textContent = message;
+
+  inner.appendChild(icon);
+  inner.appendChild(msg);
+  toast.appendChild(inner);
+
+  document.body.appendChild(toast);
+
+  requestAnimationFrame(() => {
+    toast.classList.add("is-visible");
+  });
+
+  setTimeout(() => {
+    toast.classList.remove("is-visible");
+    setTimeout(() => toast.remove(), 400);
+  }, 3000);
+};
 
 if (isEmbeddedFrame) {
   root.dataset.embeddedFrame = "true";
@@ -412,6 +461,8 @@ copyButtons.forEach((button) => {
       const original = button.textContent;
       button.textContent = "Copiado";
       button.classList.add("is-copied");
+
+      window.showToast(`${button.dataset.copyType || "Dato"} copiado al portapapeles`);
 
       window.setTimeout(() => {
         button.textContent = original;

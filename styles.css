@@ -9726,3 +9726,107 @@ body[data-preview-expanded="true"] .home-preview-panel__viewport iframe {
     animation: none;
   }
 }
+
+/* --- Palette: Cinematic Interaction & Feedback --- */
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 500;
+  padding: 0.8rem 1.5rem;
+  background: var(--surface-contrast);
+  color: var(--bg);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 0 0 1.2rem 1.2rem;
+  border: 1px solid var(--line-inverse);
+  border-top: 0;
+  box-shadow: var(--shadow-strong);
+  transition: top 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: none;
+}
+
+.site-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translate(-50%, 20px);
+  z-index: 400;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+}
+
+.site-toast.is-visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+.site-toast__inner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.2rem;
+  background: var(--surface-contrast);
+  color: var(--bg);
+  border: 1px solid var(--line-inverse);
+  border-radius: 999px;
+  box-shadow: var(--shadow-strong);
+  backdrop-filter: blur(12px);
+}
+
+.site-toast__icon {
+  display: grid;
+  place-items: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.8rem;
+}
+
+.site-toast__message {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.is-loading-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.is-loading-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background-size: 200% 100%;
+  animation: link-shimmer 0.75s linear infinite;
+}
+
+@keyframes link-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+[data-theme="dark"] .site-toast__inner,
+[data-theme="dark"] .skip-link {
+  background: var(--surface-strong);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link, .site-toast, .is-loading-link::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
